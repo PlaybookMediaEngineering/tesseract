@@ -40,6 +40,33 @@ CREATE TABLE IF NOT EXISTS public.users (
   CONSTRAINT users_id_fkey FOREIGN KEY (id) REFERENCES public.users(id)
 );
 
+-- Enable RLS
+ALTER TABLE public.users ENABLE ROW LEVEL SECURITY;
+
+-- Policy for SELECT
+CREATE POLICY "Users can view their own data"
+ON public.users
+FOR SELECT
+USING (id = auth.uid());
+
+-- Policy for INSERT
+CREATE POLICY "Users can insert their own data"
+ON public.users
+FOR INSERT
+WITH CHECK (id = auth.uid());
+
+-- Policy for UPDATE
+CREATE POLICY "Users can update their own data"
+ON public.users
+FOR UPDATE
+USING (id = auth.uid());
+
+-- Policy for DELETE
+CREATE POLICY "Users can delete their own data"
+ON public.users
+FOR DELETE
+USING (id = auth.uid());
+
 CREATE TABLE IF NOT EXISTS public.bank_connections (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   access_token TEXT NULL,
@@ -70,13 +97,39 @@ CREATE TABLE IF NOT EXISTS public.bank_accounts (
   name TEXT NULL,
   team_id UUID NOT NULL,
   CONSTRAINT bank_accounts_bank_connection_id_fkey FOREIGN KEY (bank_connection_id) REFERENCES public.bank_connections(id),
-  -- FOREIGN KEY (bank_connection_id) REFERENCES public.decrypted_bank_connections(id),
   CONSTRAINT bank_accounts_created_by_fkey FOREIGN KEY (created_by) REFERENCES public.users(id),
   CONSTRAINT public_bank_accounts_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id)
 );
 
 SECURITY LABEL FOR pgsodium	ON COLUMN public.bank_accounts.name
   IS 'ENCRYPT WITH KEY ID e11e1140-67b0-4230-968b-4293b6b23162 SECURITY INVOKER';
+
+-- Enable RLS
+ALTER TABLE public.bank_accounts ENABLE ROW LEVEL SECURITY;
+
+-- Policy for SELECT
+CREATE POLICY "Users can view their own bank_accounts"
+ON public.bank_accounts
+FOR SELECT
+USING (created_by = auth.uid());
+
+-- Policy for UPDATE
+CREATE POLICY "Users can update their own bank_accounts"
+ON public.bank_accounts
+FOR UPDATE
+USING (created_by = auth.uid());
+
+-- Policy for DELETE
+CREATE POLICY "Users can delete their own bank_accounts"
+ON public.bank_accounts
+FOR DELETE
+USING (created_by = auth.uid());
+
+-- Policy for INSERT
+CREATE POLICY "Users can insert bank accounts"
+ON public.bank_accounts
+FOR INSERT
+WITH CHECK (created_by = auth.uid());
 
 CREATE TABLE IF NOT EXISTS public.transaction_categories (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -91,6 +144,7 @@ CREATE TABLE IF NOT EXISTS public.transaction_categories (
   CONSTRAINT transaction_categories_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id),
   UNIQUE (slug, team_id) -- Composite unique constraint
 );
+
 
 CREATE TABLE IF NOT EXISTS public.transactions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -113,16 +167,43 @@ CREATE TABLE IF NOT EXISTS public.transactions (
   note TEXT NULL,
   status transactionStatus NULL,
   team_id UUID NOT NULL,
-  FOREIGN KEY (assigned_id) REFERENCES public.users(id),
-  FOREIGN KEY (bank_account_id) REFERENCES public.bank_accounts(id),
-  FOREIGN KEY (category_slug, team_id) REFERENCES public.transaction_categories(slug, team_id),
-  FOREIGN KEY (team_id) REFERENCES public.teams(id)
+  CONSTRAINT public_transactions_assigned_id_fkey FOREIGN KEY (assigned_id) REFERENCES public.users(id),
+  CONSTRAINT transactions_bank_account_id_fkey FOREIGN KEY (bank_account_id) REFERENCES public.bank_accounts(id),
+  CONSTRAINT transactions_category_slug_team_id_fkey FOREIGN KEY (category_slug, team_id) REFERENCES public.transaction_categories(slug, team_id),
+  CONSTRAINT public_transactions_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id)
 );
 
 SECURITY LABEL FOR pgsodium	ON COLUMN public.transactions.name
   IS 'ENCRYPT WITH KEY ID e11e1140-67b0-4230-968b-4293b6b23162 SECURITY INVOKER';
 SECURITY LABEL FOR pgsodium	ON COLUMN public.transactions.description
   IS 'ENCRYPT WITH KEY ID e11e1140-67b0-4230-968b-4293b6b23162 SECURITY INVOKER';
+
+-- Enable RLS
+ALTER TABLE public.transactions ENABLE ROW LEVEL SECURITY;
+
+-- Policy for SELECT
+CREATE POLICY "Users can view their own transactions"
+ON public.transactions
+FOR SELECT
+USING (assigned_id = auth.uid());
+
+-- Policy for UPDATE
+CREATE POLICY "Users can update their own transactions"
+ON public.transactions
+FOR UPDATE
+USING (assigned_id = auth.uid());
+
+-- Policy for DELETE
+CREATE POLICY "Users can delete their own transactions"
+ON public.transactions
+FOR DELETE
+USING (assigned_id = auth.uid());
+
+-- Policy for INSERT
+CREATE POLICY "Users can insert transactions"
+ON public.transactions
+FOR INSERT
+WITH CHECK (assigned_id = auth.uid());
 
 CREATE TABLE IF NOT EXISTS public.transaction_attachments (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -180,6 +261,33 @@ CREATE TABLE IF NOT EXISTS public.reports (
   CONSTRAINT reports_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id)
 );
 
+-- Enable RLS
+ALTER TABLE public.reports ENABLE ROW LEVEL SECURITY;
+
+-- Policy for SELECT
+CREATE POLICY "Users can view their own reports"
+ON public.reports
+FOR SELECT
+USING (created_by = auth.uid());
+
+-- Policy for INSERT (modified)
+CREATE POLICY "Users and system can insert reports"
+ON public.reports
+FOR INSERT
+WITH CHECK (created_by = auth.uid());
+
+-- Policy for UPDATE
+CREATE POLICY "Users can update their own reports"
+ON public.reports
+FOR UPDATE
+USING (created_by = auth.uid());
+
+-- Policy for DELETE
+CREATE POLICY "Users can delete their own reports"
+ON public.reports
+FOR DELETE
+USING (created_by = auth.uid());
+
 CREATE TABLE IF NOT EXISTS public.tracker_projects (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   billable BOOLEAN NULL,
@@ -209,6 +317,33 @@ CREATE TABLE IF NOT EXISTS public.tracker_reports (
   CONSTRAINT tracker_reports_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id)
 );
 
+-- Enable RLS
+ALTER TABLE public.tracker_reports ENABLE ROW LEVEL SECURITY;
+
+-- Policy for SELECT
+CREATE POLICY "Users can view their own tracker reports"
+ON public.tracker_reports
+FOR SELECT
+USING (created_by = auth.uid());
+
+-- Policy for INSERT (modified)
+CREATE POLICY "Users and system can insert tracker reports"
+ON public.tracker_reports
+FOR INSERT
+WITH CHECK (created_by = auth.uid());
+
+-- Policy for UPDATE
+CREATE POLICY "Users can update their own tracker reports"
+ON public.tracker_reports
+FOR UPDATE
+USING (created_by = auth.uid());
+
+-- Policy for DELETE
+CREATE POLICY "Users can delete their own tracker reports"
+ON public.tracker_reports
+FOR DELETE
+USING (created_by = auth.uid());
+
 CREATE TABLE IF NOT EXISTS public.tracker_entries (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   assigned_id UUID NULL,
@@ -229,6 +364,32 @@ CREATE TABLE IF NOT EXISTS public.tracker_entries (
   CONSTRAINT tracker_entries_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id)
 );
 
+-- Enable RLS
+ALTER TABLE public.tracker_entries ENABLE ROW LEVEL SECURITY;
+
+-- Policy for SELECT
+CREATE POLICY "Users can view their own tracker entries"
+ON public.tracker_entries
+FOR SELECT
+USING (assigned_id = auth.uid());
+
+-- Policy for INSERT (modified)
+CREATE POLICY "Users and system can insert tracker entries"
+ON public.tracker_entries
+FOR INSERT
+WITH CHECK (assigned_id = auth.uid());
+
+-- Policy for UPDATE
+CREATE POLICY "Users can update their own tracker entries"
+ON public.tracker_entries
+FOR UPDATE
+USING (assigned_id = auth.uid());
+
+-- Policy for DELETE
+CREATE POLICY "Users can delete their own tracker entries"
+ON public.tracker_entries
+FOR DELETE
+USING (assigned_id = auth.uid());
 
 CREATE TABLE IF NOT EXISTS public.transaction_enrichments (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -241,32 +402,6 @@ CREATE TABLE IF NOT EXISTS public.transaction_enrichments (
   CONSTRAINT transaction_enrichments_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id)
 );
 
-CREATE TABLE IF NOT EXISTS public.transactions (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  amount NUMERIC NOT NULL,
-  assigned_id UUID NULL,
-  balance NUMERIC NULL,
-  bank_account_id UUID,
-  category transactionCategories,
-  category_slug UUID NULL,
-  created_at TIMESTAMP DEFAULT NOW() NOT NULL,
-  currency TEXT NOT NULL,
-  currency_rate NUMERIC NULL, 
-  currency_source TEXT NULL,
-  date TIMESTAMP DEFAULT NOW() NOT NULL,
-  description TEXT NULL,
-  internal_id TEXT NOT NULL,
-  manual BOOLEAN NULL,
-  method transactionMethods NOT NULL,
-  name TEXT NOT NULL,
-  note TEXT NULL,
-  status transactionStatus NULL,
-  team_id UUID NOT NULL,
-  CONSTRAINT public_transactions_assigned_id_fkey FOREIGN KEY (assigned_id) REFERENCES public.users(id),
-  CONSTRAINT transactions_bank_account_id_fkey FOREIGN KEY (bank_account_id) REFERENCES public.bank_accounts(id),
-  CONSTRAINT transactions_category_slug_team_id_fkey FOREIGN KEY (category_slug, team_id) REFERENCES public.transaction_categories(slug, team_id),
-  CONSTRAINT public_transactions_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id)
-);
 
 CREATE TABLE IF NOT EXISTS public.user_invites (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -280,6 +415,33 @@ CREATE TABLE IF NOT EXISTS public.user_invites (
   CONSTRAINT public_user_invites_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id)
 );
 
+-- Enable RLS
+ALTER TABLE public.user_invites ENABLE ROW LEVEL SECURITY;
+
+-- Policy for SELECT
+CREATE POLICY "Users can view their own invites"
+ON public.user_invites
+FOR SELECT
+USING (invited_by = auth.uid());
+
+-- Policy for INSERT (modified)
+CREATE POLICY "Users and system can insert invites"
+ON public.user_invites
+FOR INSERT
+WITH CHECK (invited_by = auth.uid());
+
+-- Policy for UPDATE
+CREATE POLICY "Users can update their own invites"
+ON public.user_invites
+FOR UPDATE
+USING (invited_by = auth.uid());
+
+-- Policy for DELETE
+CREATE POLICY "Users can delete their own invites"
+ON public.user_invites
+FOR DELETE
+USING (invited_by = auth.uid());
+
 CREATE TABLE IF NOT EXISTS public.users_on_team (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   created_at TIMESTAMP,
@@ -289,6 +451,34 @@ CREATE TABLE IF NOT EXISTS public.users_on_team (
   CONSTRAINT users_on_team_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id),
   CONSTRAINT users_on_team_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id)
 );
+
+-- Enable RLS
+ALTER TABLE public.users_on_team ENABLE ROW LEVEL SECURITY;
+
+-- Policy for SELECT
+CREATE POLICY "Users can view their own team memberships"
+ON public.users_on_team
+FOR SELECT
+USING (user_id = auth.uid());
+
+-- Policy for INSERT (modified)
+CREATE POLICY "Users and system can insert team memberships"
+ON public.users_on_team
+FOR INSERT
+WITH CHECK (user_id = auth.uid());
+
+-- Policy for UPDATE
+CREATE POLICY "Users can update their own team memberships"
+ON public.users_on_team
+FOR UPDATE
+USING (user_id = auth.uid());
+
+-- Policy for DELETE
+CREATE POLICY "Users can delete their own team memberships"
+ON public.users_on_team
+FOR DELETE
+USING (user_id = auth.uid());
+
 -- Create the functions
 CREATE FUNCTION public.amount_text() RETURNS TEXT AS $$
 BEGIN
