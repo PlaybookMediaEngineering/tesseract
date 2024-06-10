@@ -1,5 +1,5 @@
-import { type Metadata } from 'next'
 import glob from 'fast-glob'
+import { type Metadata } from 'next'
 
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
