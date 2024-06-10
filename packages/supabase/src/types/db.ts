@@ -664,8 +664,8 @@ export type Database = {
           balance?: number | null;
           bank_account_id?: string | null;
           category?:
-            | Database["public"]["Enums"]["transactionCategories"]
-            | null;
+          | Database["public"]["Enums"]["transactionCategories"]
+          | null;
           category_slug?: string | null;
           created_at?: string;
           currency: string;
@@ -688,8 +688,8 @@ export type Database = {
           balance?: number | null;
           bank_account_id?: string | null;
           category?:
-            | Database["public"]["Enums"]["transactionCategories"]
-            | null;
+          | Database["public"]["Enums"]["transactionCategories"]
+          | null;
           category_slug?: string | null;
           created_at?: string;
           currency?: string;
@@ -997,8 +997,8 @@ export type Database = {
           balance?: number | null;
           bank_account_id?: string | null;
           category?:
-            | Database["public"]["Enums"]["transactionCategories"]
-            | null;
+          | Database["public"]["Enums"]["transactionCategories"]
+          | null;
           category_slug?: string | null;
           created_at?: string | null;
           currency?: string | null;
@@ -1023,8 +1023,8 @@ export type Database = {
           balance?: number | null;
           bank_account_id?: string | null;
           category?:
-            | Database["public"]["Enums"]["transactionCategories"]
-            | null;
+          | Database["public"]["Enums"]["transactionCategories"]
+          | null;
           category_slug?: string | null;
           created_at?: string | null;
           currency?: string | null;
@@ -1107,29 +1107,29 @@ export type Database = {
         Returns: string;
       };
       generate_inbox_fts:
-        | {
-            Args: {
-              display_name: string;
-              products_json: Json;
-            };
-            Returns: unknown;
-          }
-        | {
-            Args: {
-              display_name_text: string;
-              product_names: string;
-            };
-            Returns: unknown;
-          }
-        | {
-            Args: {
-              display_name_text: string;
-              product_names: string;
-              amount: number;
-              due_date: string;
-            };
-            Returns: unknown;
-          };
+      | {
+        Args: {
+          display_name: string;
+          products_json: Json;
+        };
+        Returns: unknown;
+      }
+      | {
+        Args: {
+          display_name_text: string;
+          product_names: string;
+        };
+        Returns: unknown;
+      }
+      | {
+        Args: {
+          display_name_text: string;
+          product_names: string;
+          amount: number;
+          due_date: string;
+        };
+        Returns: unknown;
+      };
       get_bank_account_currencies: {
         Args: {
           team_id: string;
@@ -1289,108 +1289,108 @@ export type Database = {
         Returns: string;
       };
       project_members:
-        | {
-            Args: {
-              "": unknown;
-            };
-            Returns: {
-              id: string;
-              avatar_url: string;
-              full_name: string;
-            }[];
-          }
-        | {
-            Args: {
-              "": unknown;
-            };
-            Returns: {
-              id: string;
-              avatar_url: string;
-              full_name: string;
-            }[];
-          };
+      | {
+        Args: {
+          "": unknown;
+        };
+        Returns: {
+          id: string;
+          avatar_url: string;
+          full_name: string;
+        }[];
+      }
+      | {
+        Args: {
+          "": unknown;
+        };
+        Returns: {
+          id: string;
+          avatar_url: string;
+          full_name: string;
+        }[];
+      };
       query_inbox_embeddings:
-        | {
-            Args: {
-              embedding: string;
-              match_threshold: number;
-            };
-            Returns: {
-              id: string;
-              created_at: string;
-              name: string;
-              website: string;
-              file_path: string[];
-              amount: number;
-              currency: string;
-              content_type: string;
-              size: number;
-              attachment_id: string;
-              transaction_id: string;
-              due_date: string;
-              forwarded_to: string;
-              reference_id: string;
-              status: Database["public"]["Enums"]["inbox_status"];
-              transaction_amount: number;
-              transaction_currency: string;
-              transaction_name: string;
-              transaction_date: string;
-            }[];
-          }
-        | {
-            Args: {
-              embedding_vector: number[];
-              match_threshold: number;
-            };
-            Returns: {
-              id: string;
-              created_at: string;
-              name: string;
-              website: string;
-              file_path: string[];
-              amount: number;
-              currency: string;
-              content_type: string;
-              size: number;
-              attachment_id: string;
-              transaction_id: string;
-              due_date: string;
-              forwarded_to: string;
-              reference_id: string;
-              status: Database["public"]["Enums"]["inbox_status"];
-              transaction_amount: number;
-              transaction_currency: string;
-              transaction_date: string;
-            }[];
-          }
-        | {
-            Args: {
-              team_id: string;
-              embedding: string;
-              match_threshold: number;
-            };
-            Returns: {
-              id: string;
-              created_at: string;
-              display_name: string;
-              website: string;
-              file_path: string[];
-              amount: number;
-              currency: string;
-              content_type: string;
-              size: number;
-              attachment_id: string;
-              transaction_id: string;
-              due_date: string;
-              forwarded_to: string;
-              reference_id: string;
-              status: Database["public"]["Enums"]["inbox_status"];
-              transaction_amount: number;
-              transaction_currency: string;
-              transaction_name: string;
-              transaction_date: string;
-            }[];
-          };
+      | {
+        Args: {
+          embedding: string;
+          match_threshold: number;
+        };
+        Returns: {
+          id: string;
+          created_at: string;
+          name: string;
+          website: string;
+          file_path: string[];
+          amount: number;
+          currency: string;
+          content_type: string;
+          size: number;
+          attachment_id: string;
+          transaction_id: string;
+          due_date: string;
+          forwarded_to: string;
+          reference_id: string;
+          status: Database["public"]["Enums"]["inbox_status"];
+          transaction_amount: number;
+          transaction_currency: string;
+          transaction_name: string;
+          transaction_date: string;
+        }[];
+      }
+      | {
+        Args: {
+          embedding_vector: number[];
+          match_threshold: number;
+        };
+        Returns: {
+          id: string;
+          created_at: string;
+          name: string;
+          website: string;
+          file_path: string[];
+          amount: number;
+          currency: string;
+          content_type: string;
+          size: number;
+          attachment_id: string;
+          transaction_id: string;
+          due_date: string;
+          forwarded_to: string;
+          reference_id: string;
+          status: Database["public"]["Enums"]["inbox_status"];
+          transaction_amount: number;
+          transaction_currency: string;
+          transaction_date: string;
+        }[];
+      }
+      | {
+        Args: {
+          team_id: string;
+          embedding: string;
+          match_threshold: number;
+        };
+        Returns: {
+          id: string;
+          created_at: string;
+          display_name: string;
+          website: string;
+          file_path: string[];
+          amount: number;
+          currency: string;
+          content_type: string;
+          size: number;
+          attachment_id: string;
+          transaction_id: string;
+          due_date: string;
+          forwarded_to: string;
+          reference_id: string;
+          status: Database["public"]["Enums"]["inbox_status"];
+          transaction_amount: number;
+          transaction_currency: string;
+          transaction_name: string;
+          transaction_date: string;
+        }[];
+      };
       set_limit: {
         Args: {
           "": number;
@@ -1440,34 +1440,34 @@ export type Database = {
       teamRoles: "owner" | "member";
       trackerStatus: "in_progress" | "completed";
       transactionCategories:
-        | "travel"
-        | "office_supplies"
-        | "meals"
-        | "software"
-        | "rent"
-        | "income"
-        | "equipment"
-        | "transfer"
-        | "internet_and_telephone"
-        | "facilities_expenses"
-        | "activity"
-        | "uncategorized"
-        | "taxes"
-        | "other"
-        | "salary"
-        | "fees";
+      | "travel"
+      | "office_supplies"
+      | "meals"
+      | "software"
+      | "rent"
+      | "income"
+      | "equipment"
+      | "transfer"
+      | "internet_and_telephone"
+      | "facilities_expenses"
+      | "activity"
+      | "uncategorized"
+      | "taxes"
+      | "other"
+      | "salary"
+      | "fees";
       transactionMethods:
-        | "payment"
-        | "card_purchase"
-        | "card_atm"
-        | "transfer"
-        | "other"
-        | "unknown"
-        | "ach"
-        | "interest"
-        | "deposit"
-        | "wire"
-        | "fee";
+      | "payment"
+      | "card_purchase"
+      | "card_atm"
+      | "transfer"
+      | "other"
+      | "unknown"
+      | "ach"
+      | "interest"
+      | "deposit"
+      | "wire"
+      | "fee";
       transactionStatus: "posted" | "pending" | "excluded" | "completed";
     };
     CompositeTypes: {
@@ -1483,78 +1483,78 @@ type PublicSchema = Database[Extract<keyof Database, "public">];
 
 export type Tables<
   PublicTableNameOrOptions extends
-    | keyof (PublicSchema["Tables"] & PublicSchema["Views"])
-    | { schema: keyof Database },
+  | keyof (PublicSchema["Tables"] & PublicSchema["Views"])
+  | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-        Database[PublicTableNameOrOptions["schema"]]["Views"])
-    : never = never
+  ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
+    Database[PublicTableNameOrOptions["schema"]]["Views"])
+  : never = never
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+    Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
       Row: infer R;
     }
-    ? R
-    : never
+  ? R
+  : never
   : PublicTableNameOrOptions extends keyof (PublicSchema["Tables"] &
-      PublicSchema["Views"])
+    PublicSchema["Views"])
   ? (PublicSchema["Tables"] &
-      PublicSchema["Views"])[PublicTableNameOrOptions] extends {
+    PublicSchema["Views"])[PublicTableNameOrOptions] extends {
       Row: infer R;
     }
-    ? R
-    : never
+  ? R
+  : never
   : never;
 
 export type TablesInsert<
   PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
-    | { schema: keyof Database },
+  | keyof PublicSchema["Tables"]
+  | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-    : never = never
+  ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+  : never = never
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I;
-    }
-    ? I
-    : never
+    Insert: infer I;
+  }
+  ? I
+  : never
   : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
   ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-      Insert: infer I;
-    }
-    ? I
-    : never
+    Insert: infer I;
+  }
+  ? I
+  : never
   : never;
 
 export type TablesUpdate<
   PublicTableNameOrOptions extends
-    | keyof PublicSchema["Tables"]
-    | { schema: keyof Database },
+  | keyof PublicSchema["Tables"]
+  | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-    : never = never
+  ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
+  : never = never
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U;
-    }
-    ? U
-    : never
+    Update: infer U;
+  }
+  ? U
+  : never
   : PublicTableNameOrOptions extends keyof PublicSchema["Tables"]
   ? PublicSchema["Tables"][PublicTableNameOrOptions] extends {
-      Update: infer U;
-    }
-    ? U
-    : never
+    Update: infer U;
+  }
+  ? U
+  : never
   : never;
 
 export type Enums<
   PublicEnumNameOrOptions extends
-    | keyof PublicSchema["Enums"]
-    | { schema: keyof Database },
+  | keyof PublicSchema["Enums"]
+  | { schema: keyof Database },
   EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
-    : never = never
+  ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
+  : never = never
 > = PublicEnumNameOrOptions extends { schema: keyof Database }
   ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
