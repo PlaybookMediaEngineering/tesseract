@@ -1,3 +1,9 @@
+-- Drop the tables that should be views
+DROP VIEW IF EXISTS public.decrypted_bank_accounts CASCADE;
+DROP VIEW IF EXISTS public.decrypted_bank_connections CASCADE;
+DROP VIEW IF EXISTS public.decrypted_transaction_enrichments CASCADE;
+DROP VIEW IF EXISTS public.decrypted_transactions CASCADE;
+
 CREATE VIEW public.decrypted_bank_connections AS
 SELECT
   bc.access_token,
@@ -10,11 +16,16 @@ SELECT
   bc.name,
   bc.provider,
   bc.team_id,
-  bc.name AS decrypted_name
+  CASE
+    WHEN bc.name IS NULL THEN NULL::text
+    ELSE
+      CASE
+        WHEN bc.name IS NULL THEN NULL::text
+        ELSE convert_from(pgsodium.crypto_aead_det_decrypt(decode(bc.name, 'base64'::text), convert_to(''::text, 'utf8'::name), 'e11e1140-67b0-4230-968b-4293b6b23162', NULL::bytea), 'utf8'::name)
+      END
+  END AS decrypted_name
 FROM
-  public.bank_connections bc
-LEFT JOIN
-  public.teams t ON bc.team_id = t.id;
+  public.bank_connections bc;
 
 CREATE VIEW public.decrypted_bank_accounts AS
 SELECT
@@ -29,14 +40,74 @@ SELECT
   ba.last_accessed,
   ba.name,
   ba.team_id,
-  dbc.decrypted_name
+  CASE
+    WHEN ba.name IS NULL THEN NULL::text
+    ELSE
+      CASE
+        WHEN ba.name IS NULL THEN NULL::text
+        ELSE convert_from(pgsodium.crypto_aead_det_decrypt(decode(ba.name, 'base64'::text), convert_to(''::text, 'utf8'::name), 'e11e1140-67b0-4230-968b-4293b6b23162', NULL::bytea), 'utf8'::name)
+      END
+  END AS decrypted_name
 FROM
-  public.bank_accounts ba
-LEFT JOIN
-  public.decrypted_bank_connections dbc ON ba.bank_connection_id = dbc.id
-LEFT JOIN
-  public.bank_connections bc ON ba.bank_connection_id = bc.id
-LEFT JOIN
-  public.users u ON ba.created_by = u.id
-LEFT JOIN
-  public.teams t ON ba.team_id = t.id;
+  public.bank_accounts ba;
+
+CREATE VIEW public.decrypted_transaction_enrichments AS
+SELECT
+  er.id,
+  er.category_slug,
+  er.created_at,
+  er.name,
+  er.system,
+  er.team_id,
+  CASE
+    WHEN er.name IS NULL THEN NULL::text
+    ELSE
+      CASE
+        WHEN er.name IS NULL THEN NULL::text
+        ELSE convert_from(pgsodium.crypto_aead_det_decrypt(decode(er.name, 'base64'::text), convert_to(''::text, 'utf8'::name), 'e11e1140-67b0-4230-968b-4293b6b23162', NULL::bytea), 'utf8'::name)
+      END
+  END AS decrypted_name
+FROM
+  public.transaction_enrichments er;
+
+
+CREATE VIEW public.decrypted_transactions AS
+SELECT
+  tr.id,
+  tr.amount,
+  tr.assigned_id,
+  tr.balance,
+  tr.bank_account_id,
+  tr.category,
+  tr.category_slug,
+  tr.currency,
+  tr.currency_rate,
+  tr.currency_source,
+  tr.created_at,
+  tr.date,
+  tr.description,
+  tr.internal_id,
+  tr.manual,
+  tr.method,
+  tr.name,
+  tr.note,
+  tr.status,
+  tr.team_id,
+  CASE
+    WHEN tr.name IS NULL THEN NULL::text
+    ELSE
+      CASE
+        WHEN tr.name IS NULL THEN NULL::text
+        ELSE convert_from(pgsodium.crypto_aead_det_decrypt(decode(tr.name, 'base64'::text), convert_to(''::text, 'utf8'::name), 'e11e1140-67b0-4230-968b-4293b6b23162', NULL::bytea), 'utf8'::name)
+      END
+  END AS decrypted_name,
+  CASE
+    WHEN tr.description IS NULL THEN NULL::text
+    ELSE
+      CASE
+        WHEN tr.description IS NULL THEN NULL::text
+        ELSE convert_from(pgsodium.crypto_aead_det_decrypt(decode(tr.description, 'base64'::text), convert_to(''::text, 'utf8'::name), 'e11e1140-67b0-4230-968b-4293b6b23162', NULL::bytea), 'utf8'::name)
+      END
+  END AS decrypted_description
+FROM
+  public.transactions tr
