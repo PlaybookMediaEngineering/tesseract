@@ -9,7 +9,7 @@ export function SectionSolution() {
       <div className="absolute left-4 right-4 md:left-8 md:right-8 top-4 flex justify-between text-lg">
         <span>Our solution</span>
         <span className="text-[#878787]">
-          <Link href="/">solomon-ai.app</Link>
+          <Link href="/">Solomon AI </Link>
         </span>
       </div>
       <div className="flex flex-col min-h-screen justify-center container">
@@ -28,15 +28,10 @@ export function SectionSolution() {
                 />
               </svg>
 
-              <h2 className="text-2xl">One OS</h2>
+              <h2 className="text-2xl">Multi-Faceted OS</h2>
 
               <p className="text-[#878787] text-sm text-center">
-                We set out on a journey to develop an all-encompassing business
-                operating system. Our overarching aim is to empower
-                entrepreneurs by providing them with a comprehensive suite of
-                tools that not only streamlines tedious tasks but also
-                facilitates the acquisition of deeper insights into their
-                businesses.
+                We set out to transform how medical practices manage their finances by creating a tailored operating system that leverages AI. Our vision is to provide healthcare providers with a powerful tool that simplifies daily tasks and empowers them with deeper financial insights. This system does more than streamline operations; it actively helps practices identify inefficiencies and optimize financial health through advanced AI-driven stress testing and analytics.
               </p>
             </Card>
 
@@ -71,22 +66,14 @@ export function SectionSolution() {
               <h2 className="text-2xl">Intermediary</h2>
 
               <p className="text-[#878787] text-sm text-center">
-                Solomon AI serves as the bridge between you and your accountant,
-                streamlining your month-end procedures, reducing manual work,
-                and easily packaging everything up for financial review. By
-                prioritizing user experience over building a accountant system,
-                we ensure our platform remains user-friendly and entirely
-                focused on what entrepreneurs need. This approach enables us to
-                scale quickly and globally without the need to navigate domestic
-                tax laws and change accountants current workflows.
+                Our platform is tailored to detect and address financial inefficiencies, keeping it intuitive and directly aligned with the needs of healthcare professionals. With a focus on user experience, we enable medical practices to operate more efficiently and scale effectively without getting bogged down by complex financial procedures.
               </p>
             </Card>
           </div>
           <div className="space-y-8">
             <div className="px-8">
               <h2 className="text-[42px] text-center leading-[58px]">
-                We offer business insights and automates tedious tasks, freeing
-                users to focus on what they love.
+                We provide valuable business insights, allowing medical professionals to focus on patient care.
               </h2>
             </div>
 
@@ -121,14 +108,7 @@ export function SectionSolution() {
               <h2 className="text-2xl">User friendly & AI</h2>
 
               <p className="text-[#878787] text-sm text-center">
-                We're focusing on building the platform with our community to
-                ensure it's as user-friendly as possible and covers all the
-                features needed to assist as many business owners as possible.
-                We've all witnessed the rise of AI, and we've already integrated
-                various AI aspects into our platform. For instance, we've
-                implemented features such as matching receipts to transactions,
-                category automation, and engaging with your financials through
-                Solomon AI AI, allowing users to ask for any insights they may need.
+                We're dedicated to crafting our platform alongside our community of medical professionals to guarantee it's as intuitive as possible and encompasses all the necessary features to support healthcare providers. With the integration of AI, we've enhanced our system with functionalities like matching receipts to transactions and automating category classification. Through Solomon AI, users can interact directly with their financials, easily requesting any insights they need to manage and optimize their practice efficiently.
               </p>
             </Card>
           </div>
