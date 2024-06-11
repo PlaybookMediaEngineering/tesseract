@@ -8,7 +8,7 @@ export async function UsersChart() {
       <h2 className="text-2xl">Private beta users</h2>
       <p className="text-[#878787] text-sm text-center">
         This is how many we’ve let into the system to start using it, joined the
-        community and started to form Midday together with us.
+        community and started to form Solomon AI together with us.
       </p>
 
       <div className="flex items-center space-x-4">

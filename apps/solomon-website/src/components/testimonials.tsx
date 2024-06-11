@@ -81,7 +81,7 @@ const testimonials = [
       "https://pbs.twimg.com/profile_images/1506792347840888834/dS-r50Je_400x400.jpg",
     handle: "@steventey",
     verified: true,
-    quote: `Just found my new favorite open-source project → http://midday.ai
+    quote: `Just found my new favorite open-source project → http://solomon-ai.app
 
     It's a modern layer on top of Quickbooks/Xero that lets you automate the tedious accounting aspects of your business and focus on what matters – your product.
     
@@ -110,7 +110,15 @@ const testimonials = [
   },
 ];
 
-export function Testimonials() {
+interface TestimonialProps {
+  enable?: boolean;
+}
+
+export function Testimonials({ enable = false }: TestimonialProps) {
+  if (!enable) {
+    return null;
+  }
+
   return (
     <div className="relative pb-22">
       <h3 className="text-4xl mb-8 font-medium">What people say</h3>

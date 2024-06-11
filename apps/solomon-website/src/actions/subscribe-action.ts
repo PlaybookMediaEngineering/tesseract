@@ -7,7 +7,7 @@ export async function subscribeAction(formData: FormData, userGroup: string) {
   const country = await getCountryCode();
 
   const res = await fetch(
-    "https://app.loops.so/api/newsletter-form/clna1p09j00d3l60og56gj3u1",
+    'https://app.loops.so/api/newsletter-form/clw5py0k600vansn5313wj7l5',
     {
       method: "POST",
       headers: {

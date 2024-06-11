@@ -2,12 +2,8 @@
 
 import { fetchGithubStars } from "@/actions/fetch-github-stars";
 import { fetchStats } from "@/actions/fetch-stats";
-import { Button } from "@midday/ui/button";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaXTwitter } from "react-icons/fa6";
-import customers from "./customers.png";
 import { Card } from "./ui";
 
 export function SectionTraction() {
@@ -20,7 +16,7 @@ export function SectionTraction() {
       try {
         const response = await fetchGithubStars();
         setStars(response);
-      } catch {}
+      } catch { }
     }
 
     async function fetchCount() {
@@ -28,7 +24,7 @@ export function SectionTraction() {
         const { users, transactions } = await fetchStats();
         setUsers(users);
         setTransactions(transactions);
-      } catch {}
+      } catch { }
     }
 
     fetchStars();
@@ -40,22 +36,21 @@ export function SectionTraction() {
       <div className="absolute left-4 right-4 md:left-8 md:right-8 top-4 flex justify-between text-lg">
         <span>Where we are</span>
         <span className="text-[#878787]">
-          <Link href="/">midday.ai</Link>
+          <Link href="/">Solomon AI </Link>
         </span>
       </div>
       <div className="flex flex-col min-h-screen justify-center container">
         <div className="grid md:grid-cols-3 gap-8 px-4 md:px-0 md:pt-0 h-[580px] md:h-auto overflow-auto pb-[100px] md:pb-0">
           <div className="space-y-8">
             <Card className="min-h-[365px]">
-              <h2 className="text-2xl">Waitlist sign ups</h2>
+              <h2 className="text-2xl">Onboarded Practices</h2>
 
               <p className="text-[#878787] text-sm text-center">
-                We have built Midday in public on X and amassed nearly 4000
-                signups ready to start using Midday.
+                We have been able to onboard all 5 locations of PromptMD onto the platform.
               </p>
 
               <span className="mt-auto font-mono text-[80px] md:text-[122px]">
-                3453
+                1
               </span>
             </Card>
 
@@ -63,7 +58,7 @@ export function SectionTraction() {
               <h2 className="text-2xl">GitHub stars</h2>
 
               <p className="text-[#878787] text-sm text-center">
-                Our goal is to build a great community around Midday.
+                Our goal is to build a great community around Solomon AI and the open source community.
               </p>
 
               <div className="flex items-center space-x-4">
@@ -84,12 +79,10 @@ export function SectionTraction() {
           </div>
           <div className="space-y-8">
             <Card className="min-h-[365px]">
-              <h2 className="text-2xl">Private beta users</h2>
+              <h2 className="text-2xl">Processed Locations</h2>
 
               <p className="text-[#878787] text-sm text-center">
-                This is how many we’ve let into the system to start using it,
-                joined the community and started to form Midday together with
-                us.
+                This is the number of locations we have processed for our multi-clinic partners.
               </p>
 
               <div className="flex items-center space-x-4">
@@ -99,7 +92,7 @@ export function SectionTraction() {
                 </span>
 
                 <span className="mt-auto font-mono text-[80px] md:text-[122px]">
-                  {users}
+                  {5}
                 </span>
               </div>
             </Card>
@@ -128,14 +121,14 @@ export function SectionTraction() {
             </Card>
           </div>
 
-          <div className="ml-auto w-full max-w-[820px] h-full border border-border p-6 bg-[#0C0C0C] relative">
+          {/* <div className="ml-auto w-full max-w-[820px] h-full border border-border p-6 bg-[#0C0C0C] relative">
             <h2 className="mb-24 block text-[38px] font-medium">
               What people say
             </h2>
 
             <div className="absolute w-[220px] bottom-6 left-[50%] -mt-5 -ml-[110px] flex justify-center">
               <a
-                href="https://twitter.com/search?q=midday.ai&src=typed_query&f=top"
+                href="https://twitter.com/search?q=solomon-ai.app&src=typed_query&f=top"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -147,7 +140,7 @@ export function SectionTraction() {
             </div>
 
             <Image src={customers} width={698} alt="Customers" quality={100} />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

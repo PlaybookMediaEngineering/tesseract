@@ -21,7 +21,7 @@ export default function Page() {
 
       <div className="mb-2 mt-6">
         <p className="text-[#707070] mt-4 mb-8 text-center max-w-[550px]">
-          Midday engine streamlines banking integrations with a single API
+          Solomon AI engine streamlines banking integrations with a single API
           effortlessly connecting to multiple providers and get one unified
           format.
         </p>
@@ -53,7 +53,7 @@ export default function Page() {
           One SDK, implement in minutes
         </h3>
         <p className="text-[#878787] font-sm max-w-[600px]">
-          With Midday Engine SDK you can implement banking providers in matter
+          With Solomon AI Engine SDK you can implement banking providers in matter
           of minutes.
         </p>
 

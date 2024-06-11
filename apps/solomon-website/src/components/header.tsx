@@ -22,9 +22,9 @@ const links = [
     name: "pricing",
   },
   {
-    title: "Updates",
-    path: "/updates",
-    name: "updates",
+    title: 'Engineering',
+    path: '/updates',
+    name: 'engineering',
   },
   {
     title: "Story",
@@ -35,6 +35,16 @@ const links = [
     title: "Download",
     path: "/download",
     name: "download",
+  },
+  {
+    title: 'Releases',
+    path: '/releases', // https://releases.solomon-ai.io/
+    name: 'releases',
+  },
+  {
+    title: 'Uptime',
+    path: 'https://solomon-ai.betteruptime.com/',
+    name: 'uptime',
   },
 ];
 
@@ -77,15 +87,16 @@ export function Header() {
       className={cn(
         "sticky mt-4 top-4 z-50 px-2 md:px-4 md:flex justify-center",
         pathname === "/" &&
-          "transition duration-1s ease-in-out animate-header-slide-down-fade"
+        "transition duration-1s ease-in-out animate-header-slide-down-fade"
       )}
     >
-      <nav className="border border-border px-4 flex items-center backdrop-filter backdrop-blur-xl bg-[#121212] bg-opacity-70 h-[50px]">
+      <nav className="rounded-2xl border border-border px-4 flex items-center backdrop-filter backdrop-blur-xl bg-[#121212] bg-opacity-70 h-[50px]">
         <ContextMenu>
           <ContextMenuTrigger>
             <Link href="/">
-              <span className="sr-only">Midday Logo</span>
-              <LogoIcon />
+              <span className="sr-only">Solomon AI Logo</span>
+              {/* <LogoIcon /> */}
+              <Icons.Logo />
             </Link>
           </ContextMenuTrigger>
 
@@ -118,21 +129,21 @@ export function Header() {
                     </svg>
                     `
                     );
-                  } catch {}
+                  } catch { }
                 }}
               >
                 <Icons.LogoIcon />
                 <span className="font-medium text-sm">Copy Logo as SVG</span>
               </ContextMenuItem>
-              <ContextMenuItem asChild>
+              {/* <ContextMenuItem asChild>
                 <Link href="/branding" className="flex items-center space-x-2">
                   <Icons.Change />
                   <span className="font-medium text-sm">Branding</span>
                 </Link>
-              </ContextMenuItem>
+              </ContextMenuItem> */}
               <ContextMenuItem>
                 <a
-                  href="https://ui.midday.ai"
+                  href="https://ui.solomon-ai.app"
                   className="flex items-center space-x-2"
                 >
                   <Icons.Palette />
@@ -186,7 +197,7 @@ export function Header() {
 
         <a
           className="text-sm font-medium pr-2 border-l-[1px] border-border pl-4 hidden md:block"
-          href="https://app.midday.ai"
+          href="https://app.solomon-ai.app"
         >
           Sign in
         </a>
@@ -200,7 +211,7 @@ export function Header() {
         >
           <div className="mt-4 flex justify-between p-3 px-4 relative">
             <button type="button" onClick={handleToggleMenu}>
-              <span className="sr-only">Midday Logo</span>
+              <span className="sr-only">Solomon AI Logo</span>
               <LogoIcon />
             </button>
 
@@ -252,7 +263,7 @@ export function Header() {
               </motion.li>
 
               <motion.li variants={itemVariant}>
-                <Link href="https://app.midday.ai">Get started</Link>
+                <Link href="https://app.solomon-ai.app">Get started</Link>
               </motion.li>
 
               <motion.li
@@ -260,7 +271,7 @@ export function Header() {
                 className="flex items-center space-x-2"
               >
                 <FaGithub />
-                <Link href="https://git.new/midday">Open Source</Link>
+                <Link href="https://github.com/SolomonAIEngineering/orbitkit">Open Source</Link>
               </motion.li>
 
               <motion.li
@@ -269,7 +280,7 @@ export function Header() {
               >
                 <Link
                   className="text-xl text-primary"
-                  href="https://app.midday.ai"
+                  href="https://app.solomon-ai.app"
                 >
                   Sign in
                 </Link>

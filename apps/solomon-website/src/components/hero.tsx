@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Globe } from "./globe";
 
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
   ssr: false,
@@ -40,7 +41,7 @@ export function Hero() {
             className="rounded-full border-border flex space-x-2 items-center"
           >
             <span className="font-mono text-xs">
-              Introducing Midday Assistant
+              Introducing Solomon AI Assistant
             </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -57,14 +58,12 @@ export function Hero() {
         </Link>
 
         <h1 className="text-[30px] md:text-[90px] font-medium mt-6 leading-none">
-          Run your
-          <br /> business smarter.
+          Proactive stress testing
+          <br /> for your practice
         </h1>
 
         <p className="mt-4 md:mt-6 max-w-[600px]">
-          An all-in-one tool for freelancers, contractors, consultants, and
-          micro businesses to monitor financial health, time-track projects,
-          store files, and send invoices.
+          Solomon AI equips your practice with platform  designed to conduct thorough financial stress tests..
         </p>
 
         <div className="mt-8">
@@ -72,30 +71,31 @@ export function Hero() {
             <Link href="/talk-to-us">
               <Button
                 variant="outline"
-                className="border border-primary h-12 px-6"
+                className="border border-primary h-12 px-6 rounded-2xl"
               >
                 Talk to us
               </Button>
             </Link>
 
-            <a href="https://app.midday.ai">
-              <Button className="h-12 px-5">Get Early Access</Button>
+            <a href="https://app.solomon-ai.app">
+              <Button className="h-12 px-5 rounded-2xl">Get Early Access</Button>
             </a>
           </div>
         </div>
 
         <p className="text-xs text-[#707070] mt-8 font-mono">
-          Used by over{" "}
+          Appreciated by {" "}
           <Link href="/open-startup" prefetch>
-            <span className="underline">3300+</span>
+            <span className="underline">our</span>
           </Link>{" "}
-          businesses.
+          customers.
         </p>
       </div>
 
       <div className="scale-50 md:scale-100 -top-[500px] -right-[380px] pointer-events-none transform-gpu grayscale md:flex lg:animate-[open-scale-up-fade_1.5s_ease-in-out] absolute md:-right-[200px] xl:-right-[100px] w-auto h-auto md:-top-[200px]">
         <div className={cn(isPlaying && "animate-webgl-scale-in-fade")}>
-          {isPlaying && (
+          <Globe />
+          {/* {isPlaying && (
             <Spline
               scene="https://prod.spline.design/HAMm7mSDmXF4PVqs/scene.splinecode"
               style={{
@@ -104,7 +104,7 @@ export function Hero() {
                 background: "transparent",
               }}
             />
-          )}
+          )} */}
         </div>
       </div>
     </motion.section>
