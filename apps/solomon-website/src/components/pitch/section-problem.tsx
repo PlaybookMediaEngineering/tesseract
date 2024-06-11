@@ -9,7 +9,7 @@ export function SectionProblem() {
       <div className="absolute left-4 right-4 md:left-8 md:right-8 top-4 flex justify-between text-lg">
         <span>Current problem</span>
         <span className="text-[#878787]">
-          <Link href="/">solomon-ai.app</Link>
+          <Link href="/">Solomon AI </Link>
         </span>
       </div>
       <div className="flex flex-col min-h-screen justify-center container">
@@ -27,19 +27,22 @@ export function SectionProblem() {
                   d="M0 67.333V.667l5 5 5-5 5 5 5-5 5 5 5-5 5 5 5-5 5 5 5-5 5 5 5-5v66.666l-5-5-5 5-5-5-5 5-5-5-5 5-5-5-5 5-5-5-5 5-5-5-5 5Zm10-16.666h40V44H10v6.667Zm0-13.334h40v-6.666H10v6.666ZM10 24h40v-6.667H10V24ZM6.667 57.667h46.666V10.333H6.667v47.334Z"
                 />
               </svg>
-              <h2 className="text-2xl">Disorganization</h2>
+              <h2 className="text-2xl">Factors</h2>
+              <div className="p-8 rounded-lg shadow-lg max-w-4xl mx-auto text-sm text-center">
+                <p className="text-[#878787]  mb-4">
+                  Running a private medical practice is tough, and one of the biggest challenges
+                  is managing finances. From delayed insurance claims to billing errors,
+                  this lack of financial stability hampers operations and wastes valuable time.
+                  Moreover, these financial issues often create problems for practice owners,
+                  leading to delays and errors in financial reporting some of which are further
+                  elaborated below.
+                </p>
 
-              <p className="text-[#878787] text-sm text-center">
-                Running a business is tough, and one of the biggest challenges
-                is disorganization. From scattered files to misplaced documents,
-                this lack of structure hampers productivity and wastes time.
-                Moreover, this disorganization often creates problems for your
-                accountant, leading to delays and errors in financial reporting.
-              </p>
+              </div>
             </Card>
             <div className="px-8">
               <h2 className="text-6xl text-center leading-tight">
-                The current market for SMB financial tools is a mess.
+                Medical practices are greatly underserved by current tools.
               </h2>
             </div>
           </div>
@@ -81,16 +84,35 @@ export function SectionProblem() {
                 </g>
               </svg>
 
-              <h2 className="text-2xl">Scattered workflow</h2>
-
-              <p className="text-[#878787] text-sm text-center">
-                Existing services often compound the problem by residing on
-                various platforms, resulting in a fragmented workflow. From
-                tracking time to managing finances and storing documents,
-                entrepreneurs navigate multiple interfaces and systems. This
-                scattered approach wastes time and money, increases the risk of
-                errors, and disrupts productivity.
-              </p>
+              <h2 className="text-2xl">Pain Points</h2>
+              <div className="p-8 rounded-lg shadow-lg max-w-4xl mx-auto text-sm text-center">
+                <ul className="list-disc list-inside text-[#878787]  space-y-3 text-start text-sm flex flex-col gap-2">
+                  <li>
+                    <span className="font-semibold">Insurance Claims Delays:</span>
+                    Timely insurance reimbursements are vital for steady cash flow. Delays in claims processing can really throw off finances, particularly in slower seasons when there are fewer patient visits.
+                  </li>
+                  <li>
+                    <span className="font-semibold">Billing Errors:</span>
+                    Mistakes in medical billing, such as incorrect coding or slow bill processing,
+                    lead to delayed or missed revenue. These inefficiencies are particularly
+                    problematic during times of low patient activity.
+                  </li>
+                  <li>
+                    <span className="font-semibold">Reimbursement Rate Changes:</span>
+                    Mistakes in medical billing, like wrong coding or slow processing, cause revenue delays or losses.
+                    These issues hit harder during periods of low patient activity.
+                  </li>
+                  <li>
+                    <span className="font-semibold">Seasonal Patient Fluctuations:</span>
+                    Medical practices see seasonal patient visit patterns, like spikes during flu season. In quieter times, covering fixed costs can strain financial stability.
+                  </li>
+                </ul>
+                <p className="text-[#878787]  mt-4 text-sm">
+                  These uncertainties challenge medical practices in planning and maintaining operations all year.
+                  The industry's seasonal nature complicates financial management, requiring careful resource
+                  allocation during quiet times to stay prepared for busier periods.
+                </p>
+              </div>
             </Card>
             <Card className="min-h-[315px]">
               <svg
@@ -123,11 +145,9 @@ export function SectionProblem() {
               <h2 className="text-2xl">Old tech</h2>
 
               <p className="text-[#878787] text-sm text-center">
-                Services are outdated and prioritize features tailored to
-                accountants rather than offering a user-friendly interface for
-                business owners. This approach often results in cumbersome
-                navigation and a disconnect between the software and the needs
-                of users.
+                Services are outdated and focus more on accountant needs, not on easy-to-use features
+                for business owners like doctors. This makes navigating these tools tough and
+                learning how to manage finances frustratingly complex for medical professionals.
               </p>
             </Card>
           </div>
