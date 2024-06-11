@@ -46,6 +46,11 @@ const links = [
     path: 'https://solomon-ai.betteruptime.com/',
     name: 'uptime',
   },
+  {
+    title: "Investors",
+    path: "/investors",
+    name: "investors",
+  },
 ];
 
 const listVariant = {
