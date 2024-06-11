@@ -40,9 +40,9 @@ export function SectionNext() {
           </div>
           <div className="space-y-8">
             <Card className="min-h-[370px]">
-              <h2 className="text-xl">Midday AI</h2>
+              <h2 className="text-xl">Solomon AI AI</h2>
               <span />
-              <Image src={ai} width={362} alt="Midday AI" quality={100} />
+              <Image src={ai} width={362} alt="Solomon AI AI" quality={100} />
             </Card>
 
             <Card className="min-h-[370px]">

@@ -33,7 +33,7 @@ export function PublicBetaBanner() {
 
   return (
     <a
-      href="https://go.midday.ai/htI3aDs"
+      href="https://go.solomon-ai.app/htI3aDs"
       target="_blank"
       rel="noreferrer"
       onClick={handleOnClose}
@@ -55,7 +55,7 @@ export function PublicBetaBanner() {
         <div className="flex justify-between">
           <div className="flex flex-col space-y-0.5 pl-[40px] md:border-border md:border-r-[1px] pr-4">
             <span className="text-sm font-medium">
-              Midday Public Beta Launch
+              Solomon AI Public Beta Launch
             </span>
             <p className="text-xs text-[#878787]">
               We are launching on ProductHunt, stay <br />

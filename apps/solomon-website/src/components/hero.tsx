@@ -40,7 +40,7 @@ export function Hero() {
             className="rounded-full border-border flex space-x-2 items-center"
           >
             <span className="font-mono text-xs">
-              Introducing Midday Assistant
+              Introducing Solomon AI Assistant
             </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -57,14 +57,12 @@ export function Hero() {
         </Link>
 
         <h1 className="text-[30px] md:text-[90px] font-medium mt-6 leading-none">
-          Run your
-          <br /> business smarter.
+          Proactive stress testing
+          <br /> for your practice
         </h1>
 
         <p className="mt-4 md:mt-6 max-w-[600px]">
-          An all-in-one tool for freelancers, contractors, consultants, and
-          micro businesses to monitor financial health, time-track projects,
-          store files, and send invoices.
+          Solomon AI equips your practice with platform  designed to conduct thorough financial stress tests..
         </p>
 
         <div className="mt-8">
@@ -72,24 +70,24 @@ export function Hero() {
             <Link href="/talk-to-us">
               <Button
                 variant="outline"
-                className="border border-primary h-12 px-6"
+                className="border border-primary h-12 px-6 rounded-2xl"
               >
                 Talk to us
               </Button>
             </Link>
 
-            <a href="https://app.midday.ai">
-              <Button className="h-12 px-5">Get Early Access</Button>
+            <a href="https://app.solomon-ai.app">
+              <Button className="h-12 px-5 rounded-2xl">Get Early Access</Button>
             </a>
           </div>
         </div>
 
         <p className="text-xs text-[#707070] mt-8 font-mono">
-          Used by over{" "}
+          Appreciated by {" "}
           <Link href="/open-startup" prefetch>
-            <span className="underline">3300+</span>
+            <span className="underline">our</span>
           </Link>{" "}
-          businesses.
+          customers.
         </p>
       </div>
 

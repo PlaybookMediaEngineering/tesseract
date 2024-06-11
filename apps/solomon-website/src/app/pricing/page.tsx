@@ -19,23 +19,23 @@ export default function Page() {
       <div className="container">
         <div className="min-h-[950px]">
           <h1 className="mt-24 font-medium text-center text-[100px] md:text-[170px] mb-2 leading-none">
-            Free
+            $50/mo
           </h1>
 
           <h3 className="font-medium text-center text-[100px] md:text-[170px] mb-2 text-stroke leading-none">
-            while in beta
+            or $500/yr
           </h3>
 
           <div className="flex items-center flex-col text-center relative">
             <div className="mt-12 mb-12" />
-            <p className="text-xl mt-4">Claim $30/mo deal</p>
+            {/* <p className="text-xl mt-4">Claim $30/mo deal</p> */}
 
             <div className="mt-8">
               <div className="flex items-center space-x-4">
                 <Link href="/talk-to-us">
                   <Button
                     variant="outline"
-                    className="border border-primary h-12 px-6"
+                    className="border border-primary h-12 px-6 rounded-2xl"
                   >
                     Talk to us
                   </Button>
@@ -44,9 +44,9 @@ export default function Page() {
                 <a
                   target="_blank"
                   rel="noreferrer"
-                  href="https://app.midday.ai"
+                  href="https://app.solomon-ai.app"
                 >
-                  <Button className="h-12 px-5">Get Early Access</Button>
+                  <Button className="h-12 px-5 rounded-2xl">Get Early Access</Button>
                 </a>
               </div>
             </div>
@@ -60,50 +60,14 @@ export default function Page() {
             </div>
 
             <Accordion type="single" collapsible className="w-full mt-10 mb-48">
-              <AccordionItem value="item-1">
-                <AccordionTrigger>
-                  <span className="truncate">Can I self-host Midday.ai?</span>
-                </AccordionTrigger>
-                <AccordionContent>
-                  Absolutely. We are currently writing the documentation for
-                  this. You can find the repository{" "}
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href="https://git.new/midday"
-                    className="underline"
-                  >
-                    here
-                  </a>
-                  .
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>
-                  Can I run Midday.ai locally?
-                </AccordionTrigger>
-                <AccordionContent>
-                  Yes. We are currently writing documentation for this. You can
-                  find the repository{" "}
-                  <a
-                    target="_blank"
-                    rel="noreferrer"
-                    href="https://git.new/midday"
-                    className="underline"
-                  >
-                    here
-                  </a>
-                  .
-                </AccordionContent>
-              </AccordionItem>
               <AccordionItem value="item-3">
-                <AccordionTrigger>Is Midday.ai open source?</AccordionTrigger>
+                <AccordionTrigger>Is Solomon AI.ai open source?</AccordionTrigger>
                 <AccordionContent>
                   Yes. You can find the repository{" "}
                   <a
                     target="_blank"
                     rel="noreferrer"
-                    href="https://git.new/midday"
+                    href="https://github.com/SolomonAIEngineering/orbitkit"
                     className="underline"
                   >
                     here
@@ -123,7 +87,7 @@ export default function Page() {
                   are also actively working towards SOC 2 Type II compliance. We
                   encrypt data at rest, and sensitive data on row level. We also
                   support 2FA authentication.
-                  <Link href="/policy">midday.ai/policy</Link>.
+                  <Link href="/policy">solomon-ai.app/policy</Link>.
                 </AccordionContent>
               </AccordionItem>
 
@@ -135,7 +99,7 @@ export default function Page() {
                 </AccordionTrigger>
                 <AccordionContent>
                   Yes, you can cancel your subscription at any time. If you
-                  cancel your subscription, you will still be able to use Midday
+                  cancel your subscription, you will still be able to use Solomon AI
                   until the end of your billing period.
                 </AccordionContent>
               </AccordionItem>
@@ -143,14 +107,14 @@ export default function Page() {
               <AccordionItem value="item-6">
                 <AccordionTrigger>
                   <span className="truncate max-w-[300px] md:max-w-full">
-                    I have more questions about Midday.ai. How can I get in
+                    I have more questions about Solomon AI. How can I get in
                     touch?
                   </span>
                 </AccordionTrigger>
                 <AccordionContent>
                   Sure, we're happy to answer any questions you might have. Just
                   send us an email at{" "}
-                  <a href="mailto:support@midday.ai">support@midday.ai</a> and
+                  <a href="mailto:yoanyomba@solomon-ai.co">yoanyomba@solomon-ai.co</a> and
                   we'll get back to you as soon as possible.
                 </AccordionContent>
               </AccordionItem>

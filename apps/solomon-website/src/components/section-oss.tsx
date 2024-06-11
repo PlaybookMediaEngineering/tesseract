@@ -22,7 +22,7 @@ export function SectionOSS() {
         <p className="text-[#707070] max-w-[500px]">
           We believe in being as transparent as possible, from{" "}
           <a
-            href="https://git.new/midday"
+            href="https://github.com/SolomonAIEngineering/orbitkit"
             target="_blank"
             rel="noreferrer"
             className="underline"
@@ -59,11 +59,11 @@ export function SectionOSS() {
                   <div className="flex-col">
                     <p>
                       All of our code is fully open source, clone, fork and
-                      contribute to Midday.
+                      contribute to Solomon AI.
                     </p>
 
                     <a
-                      href="https://git.new/midday"
+                      href="https://github.com/SolomonAIEngineering/orbitkit"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -89,7 +89,7 @@ export function SectionOSS() {
                       shares expertise and offers support.
                     </p>
                     <a
-                      href="https://go.midday.ai/anPiuRx"
+                      href="https://go.solomon-ai.app/anPiuRx"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -115,7 +115,7 @@ export function SectionOSS() {
                       contribute the code, or even fork the repository.
                     </p>
                     <a
-                      href="https://go.midday.ai/aTNyqQH"
+                      href="https://go.solomon-ai.app/aTNyqQH"
                       target="_blank"
                       rel="noreferrer"
                     >
@@ -144,11 +144,11 @@ export function SectionOSS() {
             </Accordion>
           </div>
           <div className="md:basis-1/2">
-            <a href="https://git.new/midday" target="_blank" rel="noreferrer">
+            <a href="https://github.com/SolomonAIEngineering/orbitkit" target="_blank" rel="noreferrer">
               <div className="aspect-square md:max-h-[280px] w-full md:border border-border md:p-10 mt-0 md:mt-0">
                 <div className="md:border-b-[1px] border-border pb-8 mb-8">
                   <h3 className="font-medium text-xl md:text-2xl hidden md:block">
-                    Midday
+                    Solomon AI
                   </h3>
                 </div>
 

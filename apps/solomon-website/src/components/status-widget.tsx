@@ -15,7 +15,7 @@ export function StatusWidget() {
         if (response) {
           setStatus(response);
         }
-      } catch {}
+      } catch { }
     }
 
     fetchData();
@@ -70,7 +70,7 @@ export function StatusWidget() {
   return (
     <a
       className="flex justify-between space-x-2 items-center w-full border border-border rounded-full px-3 py-1.5"
-      href="https://midday.openstatus.dev"
+      href="https://solomon-ai.betteruptime.com/"
       target="_blank"
       rel="noreferrer"
     >

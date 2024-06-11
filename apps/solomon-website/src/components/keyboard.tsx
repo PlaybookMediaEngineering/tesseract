@@ -23,7 +23,7 @@ export function Keyboard() {
 
       <Image
         src={keyboard}
-        alt="Download Midday"
+        alt="Download Solomon AI"
         width={1092}
         height={448}
         className="z-10 relative"
