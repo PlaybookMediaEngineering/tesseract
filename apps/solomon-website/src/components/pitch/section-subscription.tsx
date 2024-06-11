@@ -10,7 +10,7 @@ export function SectionSubscription() {
           <Link href="/">Solomon AI </Link>
         </span>
       </div>
-      <div className="flex flex-col min-h-screen justify-center container">
+      <div className="flex flex-col min-h-screen justify-center container p-[5%]">
         <div className="px-4 md:px-0 md:pt-0 h-[580px] md:h-auto overflow-auto pb-[100px] md:pb-0">
           <div className="mb-4">
             <h2 className="text-2xl">Tiers</h2>

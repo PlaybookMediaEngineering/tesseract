@@ -9,7 +9,7 @@ export function SectionVision() {
           <Link href="/">Solomon AI </Link>
         </span>
       </div>
-      <div className="flex flex-col min-h-screen justify-center container">
+      <div className="flex flex-col min-h-screen justify-center container p-[5%]">
         <h1 className="text-[45px] px-4 md:px-0 md:text-[122px] font-medium text-center leading-none">
           Our mission is to build the financial operating system for medical practices.
         </h1>
