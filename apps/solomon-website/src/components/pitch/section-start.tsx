@@ -6,7 +6,7 @@ export function SectionStart() {
         Pitch/2024
       </span>
 
-      <div className="container min-h-screen relative flex flex-1 gap-1">
+      <div className="container min-h-screen relative flex flex-1 gap-1 p-[5%]">
         {/* <div className="absolute bottom-auto mt-[150px] -ml-[35px] md:ml-0 md:mt-0 md:bottom-[650px] scale-50 md:scale-100">
           <div className="flex flex-1 gap-2">
             <Icons.Logo style={{ width: 200, height: 200 }} />
