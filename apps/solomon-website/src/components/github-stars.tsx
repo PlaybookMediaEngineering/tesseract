@@ -11,7 +11,7 @@ export function GithubStars() {
       try {
         const response = await fetchGithubStars();
         setData(response);
-      } catch {}
+      } catch { }
     }
 
     fetchData();
@@ -19,7 +19,7 @@ export function GithubStars() {
 
   return (
     <a
-      href="https://git.new/midday"
+      href="https://github.com/SolomonAIEngineering/orbitkit"
       className="border border-border flex justify-center h-8 leading-[30px] text-[#878787] mr-6 md:mr-0"
       target="_blank"
       rel="noreferrer"

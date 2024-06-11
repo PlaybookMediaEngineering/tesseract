@@ -20,11 +20,12 @@ export function Footer() {
         <div className="flex justify-between items-center border-border border-b-[1px] pb-10 md:pb-16 mb-12">
           <Link href="/" className="scale-50 -ml-[52px] md:ml-0 md:scale-100">
             <LogoLarge />
-            <span className="sr-only">Midday</span>
+            <span className="sr-only">Solomon AI</span>
           </Link>
 
           <span className="font-normal md:text-2xl text-right">
-            Run your business smarter.
+            Proactive Stress Testing
+            for Your Practice
           </span>
         </div>
 
@@ -58,7 +59,7 @@ export function Footer() {
               <span>Resources</span>
               <ul>
                 <li className="transition-colors text-[#878787]">
-                  <Link href="https://git.new/midday">Github</Link>
+                  <Link href="https://github.com/SolomonAIEngineering/orbitkit">Github</Link>
                 </li>
                 <li className="transition-colors text-[#878787]">
                   <Link href="/support">Support</Link>
@@ -75,9 +76,9 @@ export function Footer() {
                 <li className="transition-colors text-[#878787]">
                   <Link href="/pitch">Investors</Link>
                 </li>
-                <li className="transition-colors text-[#878787]">
+                {/* <li className="transition-colors text-[#878787]">
                   <Link href="/branding">Branding</Link>
-                </li>
+                </li> */}
               </ul>
             </div>
 
@@ -85,22 +86,22 @@ export function Footer() {
               <span>Solutions</span>
               <ul>
                 <li className="transition-colors text-[#878787]">
-                  <Link href="/engine">Midday Engine</Link>
+                  <Link href="/engine">Solomon AI Engine</Link>
                 </li>
-                <li className="transition-colors text-[#878787]">
-                  <Link href="https://docs.midday.ai/self-hosted">
+                {/* <li className="transition-colors text-[#878787]">
+                  <Link href="https://docs.solomon-ai.app/self-hosted">
                     Self hosted
                   </Link>
-                </li>
-                <li className="transition-colors text-[#878787]">
+                </li> */}
+                {/* <li className="transition-colors text-[#878787]">
                   <Link href="/">SaaS hosting</Link>
-                </li>
+                </li> */}
                 <li className="transition-colors text-[#878787]">
                   <Link href="/open-startup">Open startup</Link>
                 </li>
-                <li className="transition-colors text-[#878787]">
+                {/* <li className="transition-colors text-[#878787]">
                   <Link href="/oss-friends">OSS friends</Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -120,7 +121,7 @@ export function Footer() {
       </div>
 
       <h5 className="text-[#161616] text-[500px] leading-none text-center pointer-events-none">
-        midday
+        SolomonAI
       </h5>
     </footer>
   );

@@ -3,9 +3,9 @@ import { Footer } from "@/components/footer";
 import { FooterCTA } from "@/components/footer-cta";
 import { Header } from "@/components/header";
 import "@/styles/globals.css";
+import { Provider as Analytics } from "@midday/events/client";
 import { cn } from "@midday/ui/cn";
 import "@midday/ui/globals.css";
-import { Provider as Analytics } from "@midday/events/client";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
@@ -27,17 +27,17 @@ const PublicBetaBanner = dynamic(
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Midday | Run your business smarter",
-    template: "%s | Midday",
+    default: "Solomon AI | Proactive Stress Testing For Your Practice",
+    template: "%s | Solomon AI",
   },
   description:
-    "Midday provides you with greater insight into your business and automates the boring tasks, allowing you to focus on what you love to do instead.",
+    "Solomon AI equips your practice with advanced tools designed to conduct thorough financial stress tests.",
   openGraph: {
-    title: "Midday | Run your business smarter",
+    title: "Solomon AI | Proactive Stress Testing For Your Practice",
     description: "This is my portfolio.",
     url: baseUrl,
     siteName:
-      "Midday provides you with greater insight into your business and automates the boring tasks, allowing you to focus on what you love to do instead.",
+      "Solomon AI equips your practice with advanced tools designed to conduct thorough financial stress tests.",
     locale: "en_US",
     type: "website",
   },

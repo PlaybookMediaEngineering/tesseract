@@ -16,8 +16,8 @@ export function DevMessage() {
       ██║ ╚═╝ ██║██║██████╔╝██████╔╝██║  ██║   ██║   
       ╚═╝     ╚═╝╚═╝╚═════╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   
       -------------------------------------------------
-    We are open source: https://git.new/midday
-    Join the community: https://go.midday.ai/anPiuRx
+    We are open source: https://github.com/SolomonAIEngineering/orbitkit
+    Join the community: https://go.solomon-ai.app/anPiuRx
     
     `);
       ref.current = true;

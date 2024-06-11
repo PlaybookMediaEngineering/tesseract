@@ -70,36 +70,17 @@ export default async function Page() {
         >
           <h2 className="text-2xl mb-4">Transparency</h2>
           <p className="mb-10 text-[#878787]">
-            We prioritize transparency as we believe it is essential for
-            fostering trust and credibility in all aspects of our operations.
-            It's not just a value, it's the foundation of our relationships with
-            users alike. We prioritize clear and accurate information for users,
-            empowering them to make informed decisions confidently. We uphold
-            transparency with our users, offering open communication about
-            financial performance and strategies to maintain strong, mutually
-            beneficial relationships.
+            We prioritize transparency as we believe it is essential for fostering trust and credibility in all aspects of our operations. It's not just a value, it's the foundation of our relationships with users and investors alike. We prioritize clear and accurate information for users, empowering them to make informed decisions confidently. We uphold transparency with investors, offering open communication about financial performance and strategies to maintain strong, mutually beneficial relationships.
           </p>
 
           <h2 className="text-2xl mb-4">Expectation</h2>
           <p className="mb-10 text-[#878787]">
-            Accurately setting expectations is crucial, directly tied to our
-            dedication to transparency. We've observed many startups fall short
-            due to overpromising, highlighting the importance of aligning
-            promises with reality. By maintaining this alignment, we cultivate
-            trust and integrity, fostering a culture of accountability guided by
-            transparency.
+            Accurately setting expectations is crucial, directly tied to our dedication to transparency. This applies not just to users but also to investors. We've observed many startups fall short due to overpromising, highlighting the importance of aligning promises with reality. By maintaining this alignment, we cultivate trust and integrity, fostering a culture of accountability guided by transparency.
           </p>
 
           <h2 className="text-2xl mb-4">Strategic Growth</h2>
           <p className="mb-10 text-[#878787]">
-            We firmly believe in the potential of assembling the right team to
-            build a highly profitable company. However, we also recognize that
-            size doesn't necessarily equate to success. Having experienced the
-            inefficiencies of overbloated organizations firsthand, we understand
-            the importance of agility and efficiency. For us, it's not about the
-            number of seats we fill, but rather the quality of individuals we
-            bring on board. Hence, our focus lies in growing intelligently,
-            prioritizing talent and effectiveness over sheer size.
+            We firmly believe in the potential of assembling the right team to build a highly profitable company. However, we also recognize that size doesn't necessarily equate to success. Having experienced the inefficiencies of overbloated organizations firsthand, we understand the importance of agility and efficiency. For us, it's not about the number of seats we fill, but rather the quality of individuals we bring on board. Hence, our focus lies in growing intelligently, prioritizing talent and effectiveness over sheer size.
           </p>
         </TabsContent>
 
@@ -118,15 +99,33 @@ export default async function Page() {
             </TableHeader>
             <TableBody>
               <TableRow>
-                <TableCell>Founders</TableCell>
+                <TableCell>Yoan Yomba</TableCell>
                 <TableCell>0</TableCell>
-                <TableCell>100</TableCell>
-                <TableCell className="text-right">100%</TableCell>
+                <TableCell>3,000,000</TableCell>
+                <TableCell className="text-right">30%</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Alexis Serra</TableCell>
+                <TableCell>0</TableCell>
+                <TableCell>3,000,000</TableCell>
+                <TableCell className="text-right">30%</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Yvan Yomba</TableCell>
+                <TableCell>0</TableCell>
+                <TableCell>3,000,000</TableCell>
+                <TableCell className="text-right">30%</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Not Allocated</TableCell>
+                <TableCell>0</TableCell>
+                <TableCell>1,000,000</TableCell>
+                <TableCell className="text-right">10%</TableCell>
               </TableRow>
             </TableBody>
           </Table>
           <p className="text-xs text-center mt-4 text-[#878787]">
-            Midday Labs AB
+            Solomon AI Share Distribution
           </p>
         </TabsContent>
       </Tabs>
