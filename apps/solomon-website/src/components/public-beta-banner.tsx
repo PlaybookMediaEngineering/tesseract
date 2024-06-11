@@ -5,7 +5,6 @@ import { Icons } from "@midday/ui/icons";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { CountdownSmall } from "./countdown-small";
 
 export function PublicBetaBanner() {
   const [isOpen, setOpen] = useState(false);
@@ -49,17 +48,17 @@ export function PublicBetaBanner() {
           height={62}
           src={require("public/ph.png")}
           alt="ProductHunt"
-          className="absolute left-0 top-4"
+          className="absolute left-0 top-4 bg-zinc-950 rounded-full"
         />
 
         <div className="flex justify-between">
           <div className="flex flex-col space-y-0.5 pl-[40px] md:border-border md:border-r-[1px] pr-4">
             <span className="text-sm font-medium">
-              Solomon AI Public Beta Launch
+              Solomon AI Public Launch
             </span>
             <p className="text-xs text-[#878787]">
-              We are launching on ProductHunt, stay <br />
-              up to date with our launch.
+              Open to all practices  <br />
+              in the northeast
             </p>
           </div>
 
@@ -70,10 +69,10 @@ export function PublicBetaBanner() {
           >
             <Icons.Close />
           </button>
-
+          {/* 
           <div className="hidden md:block mt-1.5">
             <CountdownSmall />
-          </div>
+          </div> */}
         </div>
       </div>
     </a>
