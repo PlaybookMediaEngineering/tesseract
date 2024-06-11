@@ -95,7 +95,8 @@ export function Header() {
           <ContextMenuTrigger>
             <Link href="/">
               <span className="sr-only">Solomon AI Logo</span>
-              <LogoIcon />
+              {/* <LogoIcon /> */}
+              <Icons.Logo />
             </Link>
           </ContextMenuTrigger>
 
