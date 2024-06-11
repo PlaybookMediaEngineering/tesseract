@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Globe } from "./globe";
 
 const Spline = dynamic(() => import("@splinetool/react-spline"), {
   ssr: false,
@@ -93,7 +94,8 @@ export function Hero() {
 
       <div className="scale-50 md:scale-100 -top-[500px] -right-[380px] pointer-events-none transform-gpu grayscale md:flex lg:animate-[open-scale-up-fade_1.5s_ease-in-out] absolute md:-right-[200px] xl:-right-[100px] w-auto h-auto md:-top-[200px]">
         <div className={cn(isPlaying && "animate-webgl-scale-in-fade")}>
-          {isPlaying && (
+          <Globe />
+          {/* {isPlaying && (
             <Spline
               scene="https://prod.spline.design/HAMm7mSDmXF4PVqs/scene.splinecode"
               style={{
@@ -102,7 +104,7 @@ export function Hero() {
                 background: "transparent",
               }}
             />
-          )}
+          )} */}
         </div>
       </div>
     </motion.section>
