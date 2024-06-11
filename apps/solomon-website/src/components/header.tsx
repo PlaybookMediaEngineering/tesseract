@@ -47,7 +47,7 @@ const links = [
   },
   {
     title: "Investors",
-    path: "/investors",
+    path: "/pitch",
     name: "investors",
   },
 ];
