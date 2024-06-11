@@ -13,7 +13,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { FaGithub } from "react-icons/fa";
-import { LogoIcon } from "./logo-icon";
 
 const links = [
   {
@@ -217,7 +216,7 @@ export function Header() {
           <div className="mt-4 flex justify-between p-3 px-4 relative">
             <button type="button" onClick={handleToggleMenu}>
               <span className="sr-only">Solomon AI Logo</span>
-              <LogoIcon />
+              <Icons.Logo />
             </button>
 
             <button
