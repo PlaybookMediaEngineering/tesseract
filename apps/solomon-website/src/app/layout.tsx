@@ -75,7 +75,7 @@ export default function Layout({ children }: { children: ReactElement }) {
         <Footer />
         <Analytics />
         <DevMessage />
-        <PublicBetaBanner />
+        {/* <PublicBetaBanner /> */}
       </body>
     </html>
   );
