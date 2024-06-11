@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { useMediaQuery } from "@/hooks/use-media-query";
 
-const SIZE = 800;
+const SIZE = 700;
 
 // https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/By_example/Detect_WebGL
 function isWebGLContext() {

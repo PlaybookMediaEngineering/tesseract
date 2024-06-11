@@ -3,7 +3,6 @@
 import { cn } from "@midday/ui/cn";
 import { Icons } from "@midday/ui/icons";
 import { useLocalStorage } from "@uidotdev/usehooks";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export function PublicBetaBanner() {
@@ -43,11 +42,8 @@ export function PublicBetaBanner() {
           isOpen && "animate-in slide-in-from-bottom-full"
         )}
       >
-        <Image
-          width={54}
-          height={62}
-          src={require("public/ph.png")}
-          alt="ProductHunt"
+        <div
+          style={{ height: 62, width: 54 }}
           className="absolute left-0 top-4 bg-zinc-950 rounded-full"
         />
 
