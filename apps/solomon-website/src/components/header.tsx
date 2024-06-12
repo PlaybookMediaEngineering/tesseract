@@ -51,7 +51,7 @@ const links = [
     name: "investors",
   },
   {
-    title: "Docs",
+    title: "Developer Platform",
     path: "https://docs.solomon-ai.app/",
     name: "Developer Platform",
   },
