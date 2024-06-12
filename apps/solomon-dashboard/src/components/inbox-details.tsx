@@ -1,10 +1,11 @@
 import { Avatar, AvatarFallback } from "@midday/ui/avatar";
 import { Button } from "@midday/ui/button";
 import {
+  DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuTrigger,
 } from "@midday/ui/dropdown-menu";
-import { DropdownMenu, DropdownMenuTrigger } from "@midday/ui/dropdown-menu";
 import { Icons } from "@midday/ui/icons";
 import { Separator } from "@midday/ui/separator";
 import { Skeleton } from "@midday/ui/skeleton";
@@ -47,7 +48,7 @@ export function InboxDetails({
         title: "Copied URL to clipboard.",
         variant: "success",
       });
-    } catch {}
+    } catch { }
   };
 
   if (isEmpty) {
@@ -55,7 +56,7 @@ export function InboxDetails({
   }
 
   return (
-    <div className="flex h-[calc(100vh-120px)] overflow-hidden flex-col border rounded-xl w-[1160px]">
+    <div className="flex h-[calc(100vh-120px)] overflow-hidden flex-col border w-[1160px]">
       <div className="flex items-center p-2">
         <div className="flex items-center gap-2">
           <Tooltip>

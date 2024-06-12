@@ -37,7 +37,15 @@ export default async function Page(params) {
 
   let moreSignInOptions = null;
   let preferredSignInOption =
-    device?.vendor === "Apple" ? <AppleSignIn /> : <GoogleSignIn />;
+    device?.vendor === "Apple" ? (
+      <div className="flex flex-col space-y-2">
+        <GoogleSignIn />
+        <AppleSignIn />
+      </div>
+    ) : (
+      <GoogleSignIn />
+    );
+
 
   switch (preferred?.value) {
     case "apple":
