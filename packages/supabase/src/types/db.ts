@@ -80,7 +80,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "teams";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       bank_connections: {
@@ -127,7 +127,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "teams";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       inbox: {
@@ -226,7 +226,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "transactions";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       reports: {
@@ -283,7 +283,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "teams";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       teams: {
@@ -387,7 +387,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "teams";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       tracker_projects: {
@@ -436,7 +436,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "teams";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       tracker_reports: {
@@ -488,7 +488,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "teams";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       transaction_attachments: {
@@ -543,7 +543,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "transactions";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       transaction_categories: {
@@ -590,7 +590,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "teams";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       transaction_enrichments: {
@@ -632,7 +632,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "teams";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       transactions: {
@@ -734,7 +734,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "transaction_categories";
             referencedColumns: ["slug", "team_id"];
-          }
+          },
         ];
       };
       user_invites: {
@@ -779,7 +779,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "users";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       users: {
@@ -827,7 +827,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "teams";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       users_on_team: {
@@ -866,7 +866,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "users";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
     };
@@ -918,7 +918,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "teams";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       decrypted_transaction_enrichments: {
@@ -963,7 +963,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "teams";
             referencedColumns: ["id"];
-          }
+          },
         ];
       };
       decrypted_transactions: {
@@ -1071,7 +1071,7 @@ export type Database = {
             isOneToOne: false;
             referencedRelation: "transaction_categories";
             referencedColumns: ["slug", "team_id"];
-          }
+          },
         ];
       };
     };
@@ -1488,7 +1488,7 @@ export type Tables<
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
   ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
     Database[PublicTableNameOrOptions["schema"]]["Views"])
-  : never = never
+  : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
     Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
@@ -1512,7 +1512,7 @@ export type TablesInsert<
   | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
   ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-  : never = never
+  : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
     Insert: infer I;
@@ -1533,7 +1533,7 @@ export type TablesUpdate<
   | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
   ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-  : never = never
+  : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
   ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
     Update: infer U;
@@ -1554,7 +1554,7 @@ export type Enums<
   | { schema: keyof Database },
   EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
   ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
-  : never = never
+  : never = never,
 > = PublicEnumNameOrOptions extends { schema: keyof Database }
   ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
