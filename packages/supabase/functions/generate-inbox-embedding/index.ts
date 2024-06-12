@@ -14,7 +14,7 @@ interface WebhookPayload {
 
 const supabase = createClient<Database>(
   Deno.env.get("SUPABASE_URL")!,
-  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!,
 );
 
 const model = new Supabase.ai.Session("gte-small");
@@ -23,7 +23,7 @@ function getCommaSeparatedList(data) {
   return Object.entries(data)
     ?.map(
       ([key, value]) =>
-        `${key}: ${Array.isArray(value) ? value.join(", ") : value}`
+        `${key}: ${Array.isArray(value) ? value.join(", ") : value}`,
     )
     .join(", ");
 }

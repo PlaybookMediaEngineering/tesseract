@@ -90,12 +90,13 @@ CREATE TABLE IF NOT EXISTS public.bank_accounts (
   bank_connection_id UUID NULL,
   created_at TIMESTAMP DEFAULT NOW() NOT NULL,
   created_by UUID NOT NULL,
-  currency TEXT NOT NULL,
+  currency TEXT NULL,
   enabled BOOLEAN NOT NULL DEFAULT true,
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   last_accessed TIMESTAMP NULL,
   name TEXT NULL,
   team_id UUID NOT NULL,
+  manual BOOLEAN NULL DEFAULT false,
   CONSTRAINT bank_accounts_bank_connection_id_fkey FOREIGN KEY (bank_connection_id) REFERENCES public.bank_connections(id),
   CONSTRAINT bank_accounts_created_by_fkey FOREIGN KEY (created_by) REFERENCES public.users(id),
   CONSTRAINT public_bank_accounts_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id)
@@ -141,10 +142,10 @@ CREATE TABLE IF NOT EXISTS public.transaction_categories (
   system BOOLEAN NULL,
   team_id UUID NOT NULL,
   vat NUMERIC NULL,
+  embedding TEXT NULL,
   CONSTRAINT transaction_categories_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id),
   UNIQUE (slug, team_id) -- Composite unique constraint
 );
-
 
 CREATE TABLE IF NOT EXISTS public.transactions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -562,6 +563,40 @@ BEGIN
                JOIN public.transaction_categories tc ON t.category_slug = tc.slug AND t.team_id = tc.team_id
                WHERE t.team_id = team_id AND t.date BETWEEN date_from AND date_to
                GROUP BY tc.name, tc.slug, t.currency, tc.color;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE FUNCTION public.get_spending_v2(
+    team_id UUID,
+    date_from TIMESTAMP,
+    date_to TIMESTAMP,
+    currency_target VARCHAR
+) RETURNS TABLE(
+    name VARCHAR,
+    slug VARCHAR,
+    amount NUMERIC,
+    currency VARCHAR,
+    color VARCHAR,
+    percentage NUMERIC
+) AS $$
+BEGIN
+  RETURN QUERY
+  SELECT
+    tc.name,
+    tc.slug,
+    SUM(t.amount) AS amount,
+    t.currency,
+    tc.color,
+    SUM(t.amount) * 100.0 / (SELECT SUM(amount) FROM public.transactions WHERE team_id = team_id AND date BETWEEN date_from AND date_to) AS percentage
+  FROM
+    public.transactions t
+    JOIN public.transaction_categories tc ON t.category_slug = tc.slug AND t.team_id = tc.team_id
+  WHERE
+    t.team_id = team_id
+    AND t.date BETWEEN date_from AND date_to
+    AND t.currency = currency_target
+  GROUP BY
+    tc.name, tc.slug, t.currency, tc.color;
 END;
 $$ LANGUAGE plpgsql;
 

@@ -27,29 +27,6 @@ SELECT
 FROM
   public.bank_connections bc;
 
-CREATE VIEW public.decrypted_bank_accounts AS
-SELECT
-  ba.account_id,
-  ba.balance,
-  ba.bank_connection_id,
-  ba.created_at,
-  ba.created_by,
-  ba.currency,
-  ba.enabled,
-  ba.id,
-  ba.last_accessed,
-  ba.name,
-  ba.team_id,
-  CASE
-    WHEN ba.name IS NULL THEN NULL::text
-    ELSE
-      CASE
-        WHEN ba.name IS NULL THEN NULL::text
-        ELSE convert_from(pgsodium.crypto_aead_det_decrypt(decode(ba.name, 'base64'::text), convert_to(''::text, 'utf8'::name), 'e11e1140-67b0-4230-968b-4293b6b23162', NULL::bytea), 'utf8'::name)
-      END
-  END AS decrypted_name
-FROM
-  public.bank_accounts ba;
 
 CREATE VIEW public.decrypted_transaction_enrichments AS
 SELECT
