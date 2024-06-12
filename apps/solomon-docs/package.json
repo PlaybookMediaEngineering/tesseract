@@ -1,5 +1,5 @@
 {
-  "name": "@orbitkit/platform-docs",
+  "name": "@midday/platform-docs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
