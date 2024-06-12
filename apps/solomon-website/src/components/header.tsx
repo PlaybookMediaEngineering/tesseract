@@ -50,6 +50,11 @@ const links = [
     path: "/pitch",
     name: "investors",
   },
+  {
+    title: "Docs",
+    path: "https://docs.solomon-ai.app/",
+    name: "Developer Platform",
+  },
 ];
 
 const listVariant = {
