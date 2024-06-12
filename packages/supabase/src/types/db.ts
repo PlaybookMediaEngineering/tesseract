@@ -16,10 +16,11 @@ export type Database = {
           bank_connection_id: string | null;
           created_at: string;
           created_by: string;
-          currency: string;
+          currency: string | null;
           enabled: boolean;
           id: string;
           last_accessed: string | null;
+          manual: boolean | null;
           name: string | null;
           team_id: string;
         };
@@ -29,10 +30,11 @@ export type Database = {
           bank_connection_id?: string | null;
           created_at?: string;
           created_by: string;
-          currency: string;
+          currency?: string | null;
           enabled?: boolean;
           id?: string;
           last_accessed?: string | null;
+          manual?: boolean | null;
           name?: string | null;
           team_id: string;
         };
@@ -42,10 +44,11 @@ export type Database = {
           bank_connection_id?: string | null;
           created_at?: string;
           created_by?: string;
-          currency?: string;
+          currency?: string | null;
           enabled?: boolean;
           id?: string;
           last_accessed?: string | null;
+          manual?: boolean | null;
           name?: string | null;
           team_id?: string;
         };
@@ -548,6 +551,7 @@ export type Database = {
           color: string | null;
           created_at: string | null;
           description: string | null;
+          embedding: string | null;
           id: string;
           name: string;
           slug: string;
@@ -559,6 +563,7 @@ export type Database = {
           color?: string | null;
           created_at?: string | null;
           description?: string | null;
+          embedding?: string | null;
           id?: string;
           name: string;
           slug: string;
@@ -570,6 +575,7 @@ export type Database = {
           color?: string | null;
           created_at?: string | null;
           description?: string | null;
+          embedding?: string | null;
           id?: string;
           name?: string;
           slug?: string;
@@ -723,13 +729,6 @@ export type Database = {
             referencedColumns: ["id"];
           },
           {
-            foreignKeyName: "transactions_bank_account_id_fkey";
-            columns: ["bank_account_id"];
-            isOneToOne: false;
-            referencedRelation: "decrypted_bank_accounts";
-            referencedColumns: ["id"];
-          },
-          {
             foreignKeyName: "transactions_category_slug_team_id_fkey";
             columns: ["category_slug", "team_id"];
             isOneToOne: false;
@@ -872,80 +871,6 @@ export type Database = {
       };
     };
     Views: {
-      decrypted_bank_accounts: {
-        Row: {
-          account_id: string | null;
-          balance: number | null;
-          bank_connection_id: string | null;
-          created_at: string | null;
-          created_by: string | null;
-          currency: string | null;
-          decrypted_name: string | null;
-          enabled: boolean | null;
-          id: string | null;
-          last_accessed: string | null;
-          name: string | null;
-          team_id: string | null;
-        };
-        Insert: {
-          account_id?: string | null;
-          balance?: number | null;
-          bank_connection_id?: string | null;
-          created_at?: string | null;
-          created_by?: string | null;
-          currency?: string | null;
-          decrypted_name?: never;
-          enabled?: boolean | null;
-          id?: string | null;
-          last_accessed?: string | null;
-          name?: string | null;
-          team_id?: string | null;
-        };
-        Update: {
-          account_id?: string | null;
-          balance?: number | null;
-          bank_connection_id?: string | null;
-          created_at?: string | null;
-          created_by?: string | null;
-          currency?: string | null;
-          decrypted_name?: never;
-          enabled?: boolean | null;
-          id?: string | null;
-          last_accessed?: string | null;
-          name?: string | null;
-          team_id?: string | null;
-        };
-        Relationships: [
-          {
-            foreignKeyName: "bank_accounts_bank_connection_id_fkey";
-            columns: ["bank_connection_id"];
-            isOneToOne: false;
-            referencedRelation: "bank_connections";
-            referencedColumns: ["id"];
-          },
-          {
-            foreignKeyName: "bank_accounts_bank_connection_id_fkey";
-            columns: ["bank_connection_id"];
-            isOneToOne: false;
-            referencedRelation: "decrypted_bank_connections";
-            referencedColumns: ["id"];
-          },
-          {
-            foreignKeyName: "bank_accounts_created_by_fkey";
-            columns: ["created_by"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
-          },
-          {
-            foreignKeyName: "public_bank_accounts_team_id_fkey";
-            columns: ["team_id"];
-            isOneToOne: false;
-            referencedRelation: "teams";
-            referencedColumns: ["id"];
-          }
-        ];
-      };
       decrypted_bank_connections: {
         Row: {
           access_token: string | null;
@@ -1141,13 +1066,6 @@ export type Database = {
             referencedColumns: ["id"];
           },
           {
-            foreignKeyName: "transactions_bank_account_id_fkey";
-            columns: ["bank_account_id"];
-            isOneToOne: false;
-            referencedRelation: "decrypted_bank_accounts";
-            referencedColumns: ["id"];
-          },
-          {
             foreignKeyName: "transactions_category_slug_team_id_fkey";
             columns: ["category_slug", "team_id"];
             isOneToOne: false;
@@ -1273,6 +1191,22 @@ export type Database = {
         Returns: number;
       };
       get_spending: {
+        Args: {
+          team_id: string;
+          date_from: string;
+          date_to: string;
+          currency_target: string;
+        };
+        Returns: {
+          name: string;
+          slug: string;
+          amount: number;
+          currency: string;
+          color: string;
+          percentage: number;
+        }[];
+      };
+      get_spending_v2: {
         Args: {
           team_id: string;
           date_from: string;
@@ -1496,31 +1430,6 @@ export type Database = {
           "": unknown;
         };
         Returns: unknown;
-      };
-      upsert_bank_connection: {
-        Args: {
-          b_id: string;
-          b_name: string;
-          b_institution_id: string;
-          b_logo_url: string;
-          b_team_id: string;
-          b_provider?: Database["public"]["Enums"]["bank_providers"];
-          b_access_token?: string;
-          b_enrollment_id?: string;
-          b_expires_at?: string;
-        };
-        Returns: {
-          access_token: string | null;
-          created_at: string;
-          enrollment_id: string | null;
-          expires_at: string | null;
-          id: string;
-          institution_id: string;
-          logo_url: string | null;
-          name: string;
-          provider: Database["public"]["Enums"]["bank_providers"] | null;
-          team_id: string;
-        };
       };
     };
     Enums: {

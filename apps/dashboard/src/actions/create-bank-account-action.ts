@@ -17,7 +17,7 @@ export const createBankAccountAction = action(
     const teamId = user?.data?.team_id;
 
     const { data, error } = await supabase
-      .from("decrypted_bank_accounts")
+      .from("bank_accounts")
       .insert({
         name,
         currency,
@@ -27,7 +27,7 @@ export const createBankAccountAction = action(
         account_id: nanoid(),
         manual: true,
       })
-      .select("id, name:decrypted_name")
+      .select("id, name")
       .single();
 
     if (error) {

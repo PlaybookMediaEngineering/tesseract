@@ -53,8 +53,8 @@ export async function getBankConnectionsByTeamIdQuery(
   teamId: string
 ) {
   return supabase
-    .from("decrypted_bank_connections")
-    .select("*, name:decrypted_name")
+    .from("bank_connections")
+    .select("*")
     .eq("team_id", teamId)
     .throwOnError();
 }
@@ -71,10 +71,8 @@ export async function getTeamBankAccountsQuery(
   const { teamId, enabled } = params;
 
   const query = supabase
-    .from("decrypted_bank_accounts")
-    .select(
-      "*, name:decrypted_name, bank:decrypted_bank_connections(*, name:decrypted_name)"
-    )
+    .from("bank_accounts")
+    .select("*, bank:bank_connections(*)")
     .eq("team_id", teamId)
     .order("created_at", { ascending: true })
     .order("name", { ascending: false })
@@ -204,7 +202,7 @@ export async function getTransactionsQuery(
     "description:decrypted_description",
     "assigned:assigned_id(*)",
     "category:transaction_categories(id, name, color, slug)",
-    "bank_account:decrypted_bank_accounts(id, name:decrypted_name, currency, bank_connection:decrypted_bank_connections(id, logo_url))",
+    "bank_account:bank_accounts(id, name, currency, bank_connection:bank_connections(id, logo_url))",
     "attachments:transaction_attachments(id, name, size, path, type)",
     "vat:calculated_vat",
   ];
@@ -325,7 +323,7 @@ export async function getTransactionQuery(supabase: Client, id: string) {
       assigned:assigned_id(*),
       category:category_slug(id, name, vat),
       attachments:transaction_attachments(*),
-      bank_account:decrypted_bank_accounts(id, name:decrypted_name, currency, bank_connection:decrypted_bank_connections(id, logo_url)),
+      bank_account:bank_accounts(id, name, currency, bank_connection:bank_connections(id, logo_url)),
       vat:calculated_vat
     `
     )
@@ -714,7 +712,8 @@ export async function getInboxQuery(
     .from("inbox")
     .select(columns.join(","))
     .eq("team_id", teamId)
-    .order("created_at", { ascending });
+    .order("created_at", { ascending })
+    .neq("status", "deleted");
 
   if (done) {
     query.not("transaction_id", "is", null);
@@ -733,11 +732,9 @@ export async function getInboxQuery(
   }
 
   const { data } = await query.range(from, to);
-  // TODO: Fix neq in query
-  const filteredData = data?.filter((item) => item.status !== "deleted");
 
   return {
-    data: filteredData?.map((item) => {
+    data: data?.map((item) => {
       const pending = isWithinInterval(new Date(), {
         start: new Date(item.created_at),
         end: addDays(new Date(item.created_at), 45),
