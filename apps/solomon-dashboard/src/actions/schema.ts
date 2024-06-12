@@ -185,8 +185,9 @@ export const changeTeamSchema = z.object({
 });
 
 export const createTeamSchema = z.object({
-  name: z.string(),
-  redirectTo: z.string().optional(),
+  name: z.string().min(2, {
+    message: "Team name must be at least 2 characters.",
+  }), redirectTo: z.string().optional(),
 });
 
 export const changeUserRoleSchema = z.object({
