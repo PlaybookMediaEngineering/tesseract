@@ -7,7 +7,7 @@
     }
   },
   "include": [
-      "src",
+    "src",
     "**/*.ts",
     "**/*.tsx",
     ".eslintrc.cjs",
