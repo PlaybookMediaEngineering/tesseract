@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 
 import { addons, types, useGlobals } from '@storybook/manager-api';
 
+import './globals.css';
 import theme from './theme';
 
 addons.setConfig({
