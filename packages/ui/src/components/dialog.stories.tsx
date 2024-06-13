@@ -7,7 +7,6 @@ import { Label } from './label';
 
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -88,11 +87,9 @@ export const CustomCloseButton: Story = {
           </Button>
         </div>
         <DialogFooter className="sm:justify-start">
-          <DialogClose asChild>
-            <Button type="button" variant="outline">
-              Close
-            </Button>
-          </DialogClose>
+          <Button type="button" variant="outline">
+            Close
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

@@ -93,6 +93,8 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   const user = await getUser();
+  console.log(user);
+
   const countryCode = cookies().has(Cookies.CountryCode)
     ? cookies().get(Cookies.CountryCode)?.value
     : getCountryCode();

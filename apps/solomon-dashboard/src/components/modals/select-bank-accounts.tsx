@@ -102,6 +102,7 @@ export function SelectBankAccountsModal({ countryCode }: Props) {
       });
     },
     onSuccess: (data) => {
+      console.log("data to log on success", data);
       if (data.id) {
         setEventId(data.id);
       }
