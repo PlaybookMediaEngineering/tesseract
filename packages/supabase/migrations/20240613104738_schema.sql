@@ -1,1 +1,0 @@
-GRANT EXECUTE ON FUNCTION pgsodium.crypto_aead_det_decrypt (bytea, bytea, uuid, bytea) TO authenticated;
