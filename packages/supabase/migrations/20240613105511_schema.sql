@@ -578,17 +578,25 @@ declare
   new_team_id uuid;
 begin
   -- insert into public.users
-  insert into public.users (
-    id,
-    full_name,
-    avatar_url,
-    email
+  INSERT INTO public.users (
+    id, 
+    avatar_url, 
+    created_at, 
+    email, 
+    full_name, 
+    locale, 
+    team_id, 
+    week_starts_on_monday
   )
-  values (
-    new.id,
-    new.raw_user_meta_data->>'full_name',
-    new.raw_user_meta_data->>'avatar_url',
-    new.email
+  VALUES (
+    NEW.id, 
+    new.raw_user_meta_data ->> 'avatar_url', 
+    NOW(), 
+    NEW.email, 
+    new.raw_user_meta_data ->> 'full_name', 
+    'en', 
+    NULL, 
+    TRUE
   );
 
   -- insert into public.teams and return the new_team_id
@@ -1061,7 +1069,7 @@ CREATE TABLE IF NOT EXISTS "public"."user_invites" (
 ALTER TABLE "public"."user_invites" OWNER TO "postgres";
 
 CREATE TABLE IF NOT EXISTS "public"."users" (
-    "id" "uuid" NOT NULL,
+    "id" "uuid"  NOT NULL,
     "full_name" "text",
     "avatar_url" "text",
     "email" "text",
