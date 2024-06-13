@@ -479,16 +479,18 @@ ON public.users_on_team
 FOR DELETE
 USING (user_id = auth.uid());
 
--- Create the functions
-CREATE FUNCTION public.amount_text() RETURNS TEXT AS $$
+
+-- Function to return a textual representation of an amount
+CREATE OR REPLACE FUNCTION public.amount_text(amount NUMERIC) RETURNS TEXT AS $$
 BEGIN
-  RETURN 'Amount text function not implemented';
+  RETURN 'The amount is: ' || amount::TEXT;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION public.calculated_vat() RETURNS NUMERIC AS $$
+-- Function to calculate VAT for a given amount (assuming a 20% VAT rate)
+CREATE OR REPLACE FUNCTION public.calculated_vat(amount NUMERIC) RETURNS NUMERIC AS $$
 BEGIN
-  RETURN 0;
+  RETURN amount * 0.20;  -- Assuming VAT rate is 20%
 END;
 $$ LANGUAGE plpgsql;
 
@@ -498,9 +500,17 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION public.generate_id(size INT) RETURNS TEXT AS $$
+-- Implement the business logic for the generate_id function
+CREATE OR REPLACE FUNCTION public.generate_id(size INT) RETURNS TEXT AS $$
+DECLARE
+    characters TEXT := 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    result TEXT := '';
+    i INT;
 BEGIN
-  RETURN 'Generate ID function not implemented';
+    FOR i IN 1..size LOOP
+        result := result || substr(characters, floor(random() * length(characters) + 1)::int, 1);
+    END LOOP;
+    RETURN result;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -525,9 +535,20 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION public.get_current_burn_rate(team_id UUID, currency VARCHAR) RETURNS NUMERIC AS $$
+-- Function to get the current burn rate for the current month without currency conversions
+CREATE OR REPLACE FUNCTION public.get_current_burn_rate(team_id UUID) 
+RETURNS NUMERIC 
+AS $$
+DECLARE
+  current_month_start TIMESTAMP := date_trunc('month', CURRENT_DATE);
+  current_month_end TIMESTAMP := current_month_start + interval '1 month' - interval '1 day';
+  burn_rate NUMERIC;
 BEGIN
-  RETURN 0;
+  SELECT COALESCE(SUM(amount), 0) INTO burn_rate
+  FROM public.transactions
+  WHERE team_id = team_id AND date BETWEEN current_month_start AND current_month_end;
+
+  RETURN burn_rate;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -549,9 +570,38 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION public.get_runway(team_id UUID, date_from TIMESTAMP, date_to TIMESTAMP, currency VARCHAR) RETURNS NUMERIC AS $$
+
+-- Function to calculate the runway for a given period without currency conversions
+CREATE OR REPLACE FUNCTION public.get_runway(team_id UUID, date_from TIMESTAMP, date_to TIMESTAMP) 
+RETURNS NUMERIC 
+AS $$
+DECLARE
+  total_cash NUMERIC;
+  total_expenses NUMERIC;
+  burn_rate NUMERIC;
+  months NUMERIC;
 BEGIN
-  RETURN 0;
+  -- Calculate the total cash balance for the team
+  SELECT COALESCE(SUM(balance), 0) INTO total_cash
+  FROM public.bank_accounts
+  WHERE team_id = team_id;
+
+  -- Calculate the total expenses for the specified period
+  SELECT COALESCE(SUM(amount), 0) INTO total_expenses
+  FROM public.transactions
+  WHERE team_id = team_id AND date BETWEEN date_from AND date_to;
+
+  -- Calculate the burn rate per month
+  burn_rate := total_expenses / EXTRACT(MONTH FROM age(date_to, date_from));
+
+  -- Calculate the runway in months
+  IF burn_rate > 0 THEN
+    months := total_cash / burn_rate;
+  ELSE
+    months := 0; -- If there is no burn rate, runway is indefinite
+  END IF;
+
+  RETURN months;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -599,11 +649,23 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION public.get_total_balance(team_id UUID, currency VARCHAR) RETURNS NUMERIC AS $$
+
+-- Function to get the total balance for a specified team
+CREATE OR REPLACE FUNCTION public.get_total_balance(team_id UUID) 
+RETURNS NUMERIC 
+AS $$
+DECLARE
+  total_balance NUMERIC;
 BEGIN
-  RETURN 0;
+  -- Calculate the total balance for the specified team
+  SELECT COALESCE(SUM(balance), 0) INTO total_balance
+  FROM public.bank_accounts
+  WHERE team_id = team_id;
+
+  RETURN total_balance;
 END;
 $$ LANGUAGE plpgsql;
+
 
 CREATE FUNCTION public.slugify(value VARCHAR) RETURNS VARCHAR AS $$
 BEGIN
@@ -611,9 +673,18 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE FUNCTION public.total_duration() RETURNS NUMERIC AS $$
+-- Function to calculate the total duration for all projects
+CREATE OR REPLACE FUNCTION public.total_duration() 
+RETURNS NUMERIC 
+AS $$
+DECLARE
+  total_duration NUMERIC;
 BEGIN
-  RETURN 0;
+  -- Calculate the total duration for all projects
+  SELECT COALESCE(SUM(total_duration), 0) INTO total_duration
+  FROM public.tracker_projects;
+
+  RETURN total_duration;
 END;
 $$ LANGUAGE plpgsql;
 

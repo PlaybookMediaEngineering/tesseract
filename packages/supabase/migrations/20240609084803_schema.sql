@@ -70,6 +70,7 @@ SELECT
   tr.note,
   tr.status,
   tr.team_id,
+  public.calculated_vat(tr.amount) AS vat,
   CASE
     WHEN tr.name IS NULL THEN NULL::text
     ELSE
