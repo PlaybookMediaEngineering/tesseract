@@ -44,7 +44,7 @@ export function PublicBetaBanner() {
       >
         <div
           style={{ height: 62, width: 54 }}
-          className="absolute left-0 top-4 bg-zinc-950 rounded-full"
+          className="absolute left-0 top-4 bg-zinc-950 rounded-full mr-4"
         />
 
         <div className="flex justify-between">
