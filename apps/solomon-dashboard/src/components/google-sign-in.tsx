@@ -33,14 +33,20 @@ export function GoogleSignIn() {
         },
       });
     } else {
+      console.log("return to", returnTo);
       const redirectTo = new URL("/api/auth/callback", window.location.origin);
 
+      console.log("redirect to", redirectTo);
+
+      console.log("executing return to conditional check")
       if (returnTo) {
+        console.log("returning to", returnTo, "from google sign in appended");
         redirectTo.searchParams.append("return_to", returnTo);
       }
 
       redirectTo.searchParams.append("provider", "google");
 
+      console.log("creating user in supabase")
       await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
@@ -53,7 +59,7 @@ export function GoogleSignIn() {
   return (
     <Button
       onClick={handleSignIn}
-      className="active:scale-[0.98] bg-primary px-6 py-4 text-secondary font-medium flex space-x-2 h-[40px] w-full"
+      className="active:scale-[0.98] bg-primary px-6 py-4 text-secondary font-medium flex space-x-2 h-[40px] w-full rounded-2xl"
     >
       {isLoading ? (
         <Loader2 className="h-4 w-4 animate-spin" />

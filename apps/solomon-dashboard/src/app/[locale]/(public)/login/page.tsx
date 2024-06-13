@@ -148,10 +148,8 @@ export default async function Page(params) {
             </div>
 
             <p className="font-medium pb-1 text-2xl text-[#878787]">
-              Automate financial tasks, <br /> stay organized, and make
+              Proactive stress testing, <br /> for your practice
               <br />
-              informed decisions
-              <br /> effortlessly.
             </p>
 
             <div className="pointer-events-auto mt-6 flex flex-col mb-6">

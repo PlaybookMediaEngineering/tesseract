@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS public.teams (
 );
 
 CREATE TABLE IF NOT EXISTS public.users (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  id UUID PRIMARY KEY REFERENCES auth.users ON DELETE CASCADE NOT NULL,
   avatar_url TEXT NULL,
   created_at TIMESTAMP NULL,
   email TEXT NULL,
@@ -36,8 +36,7 @@ CREATE TABLE IF NOT EXISTS public.users (
   locale TEXT NULL,
   team_id UUID NULL,
   week_starts_on_monday BOOLEAN NULL,
-  CONSTRAINT users_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id),
-  CONSTRAINT users_id_fkey FOREIGN KEY (id) REFERENCES public.users(id)
+  CONSTRAINT users_team_id_fkey FOREIGN KEY (team_id) REFERENCES public.teams(id)
 );
 
 -- Enable RLS

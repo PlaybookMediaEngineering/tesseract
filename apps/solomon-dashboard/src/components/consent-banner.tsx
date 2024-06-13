@@ -19,9 +19,9 @@ export function ConsentBanner() {
   return (
     <div
       className={cn(
-        "fixed z-50 bottom-2 md:bottom-4 left-2 md:left-4 flex flex-col space-y-4 w-[calc(100vw-16px)] max-w-[420px] border border-border p-4 transition-all bg-background",
+        "fixed z-50 bottom-2 md:bottom-4 left-2 md:left-4 flex flex-col space-y-4 w-[calc(100vw-16px)] max-w-[420px] border border-border p-4 transition-all bg-background rounded-2xl",
         isOpen &&
-          "animate-in sm:slide-in-from-bottom-full slide-in-from-bottom-full"
+        "animate-in sm:slide-in-from-bottom-full slide-in-from-bottom-full"
       )}
     >
       <div className="text-sm">

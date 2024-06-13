@@ -44,6 +44,8 @@ client.defineJob({
       await io.logger.debug(`Error register new scheduler for team: ${teamId}`);
     }
 
+    console.log("Setting up account", teamId, "at this point this would have been successful");
+
     const { data: accountsData } = await supabase
       .from("bank_accounts")
       .select(
@@ -53,6 +55,8 @@ client.defineJob({
       .eq("enabled", true)
       // NOTE: Only new accounts
       .is("last_accessed", null);
+
+    console.log("accountsData", accountsData, "teamId", teamId);
 
     const promises = accountsData?.map(async (account) => {
       const provider = new Provider({

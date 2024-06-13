@@ -16,6 +16,14 @@ shadow_port = 54320
 # server_version;` on the remote database to check.
 major_version = 15
 
+[analytics]
+# Set enabled to true to see logs in the Logs Explorer
+enabled = true
+port = 54327
+vector_port = 54328
+# Configure one of the supported backends: `postgres`, `bigquery`.
+backend = "postgres"
+
 [db.pooler]
 enabled = false
 # Port to use for the local connection pooler.
@@ -41,3 +49,29 @@ enabled = true
 port = 54323
 # External URL of the API server that frontend connects to.
 api_url = "http://127.0.0.1"
+
+# NOTE: the environment variables must be present in the root directory meaning 1 directory
+# on top of this one.
+[auth.external.github]
+enabled = true
+client_id = "env(SUPABASE_AUTH_GITHUB_CLIENT_ID)"
+secret = "env(SUPABASE_AUTH_GITHUB_SECRET)"
+redirect_uri = "http://localhost:54321/auth/v1/callback"
+
+[auth.external.google]
+enabled = true
+client_id = "env(SUPABASE_AUTH_GOOGLE_CLIENT_ID)"
+secret = "env(SUPABASE_AUTH_GOOGLE_SECRET)"
+redirect_uri = "http://localhost:54321/auth/v1/callback"
+
+[auth.external.apple]
+enabled = true
+client_id = "env(SUPABASE_AUTH_APPLE_CLIENT_ID)"
+secret = "env(SUPABASE_AUTH_APPLE_SECRET)"
+redirect_uri = "http://localhost:54321/auth/v1/callback"
+
+[auth.external.slack]
+enabled = true
+client_id = "env(SUPABASE_AUTH_SLACK_CLIENT_ID)"
+secret = "env(SUPABASE_AUTH_SLACK_SECRET)"
+redirect_uri = "http://localhost:54321/auth/v1/callback"

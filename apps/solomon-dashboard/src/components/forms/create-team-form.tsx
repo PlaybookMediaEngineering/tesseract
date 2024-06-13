@@ -58,7 +58,7 @@ export function CreateTeamForm() {
         />
 
         <Button
-          className="mt-6 w-full"
+          className="mt-6 w-full rounded-2xl"
           type="submit"
           disabled={createTeam.status === "executing"}
         >
