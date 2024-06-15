@@ -7,7 +7,7 @@ import { client, supabase } from "../client";
 import { Events, Jobs } from "../constants";
 import { scheduler } from "./scheduler";
 
-const BATCH_LIMIT = 100;
+const BATCH_LIMIT = 300;
 
 client.defineJob({
   id: Jobs.TRANSACTIONS_INITIAL_SYNC,
@@ -44,8 +44,6 @@ client.defineJob({
       await io.logger.debug(`Error register new scheduler for team: ${teamId}`);
     }
 
-    console.log("Setting up account", teamId, "at this point this would have been successful");
-
     const { data: accountsData } = await supabase
       .from("bank_accounts")
       .select(
@@ -56,7 +54,12 @@ client.defineJob({
       // NOTE: Only new accounts
       .is("last_accessed", null);
 
-    console.log("accountsData", accountsData, "teamId", teamId);
+    if (!accountsData) {
+      io.logger.warn("No accounts found", {
+        teamId,
+        accountsData,
+      });
+    }
 
     const promises = accountsData?.map(async (account) => {
       const provider = new Provider({
@@ -104,7 +107,7 @@ client.defineJob({
         await Promise.all(promises);
       }
     } catch (error) {
-      await io.logger.error(error);
+      await io.logger.error(error as string);
       throw Error("Something went wrong");
     }
 
