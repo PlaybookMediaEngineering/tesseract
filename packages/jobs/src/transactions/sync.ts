@@ -15,6 +15,11 @@ client.defineJob({
 
     const teamId = ctx.source?.id as string;
 
+    if (!teamId) {
+      await io.logger.error("Team ID is undefined");
+      return;
+    }
+    
     const { data: accountsData, error: accountsError } = await supabase
       .from("bank_accounts")
       .select(

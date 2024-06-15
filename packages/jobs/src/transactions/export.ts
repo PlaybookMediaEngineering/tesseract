@@ -39,12 +39,12 @@ client.defineJob({
     });
 
     const { data, count } = await client
-      .from("decrypted_transactions")
+      .from("transactions")
       .select(
         `
         id,
         date,
-        name:decrypted_name,
+        name,
         amount,
         note,
         balance,
@@ -123,9 +123,9 @@ client.defineJob({
         }).format(transaction.amount),
         transaction?.vat
           ? Intl.NumberFormat(locale, {
-              style: "currency",
-              currency: transaction.currency,
-            }).format(transaction?.vat)
+            style: "currency",
+            currency: transaction.currency,
+          }).format(transaction?.vat)
           : "",
         transaction?.attachments?.length > 0 ? "✔️" : "❌",
         transaction?.note ?? "",
