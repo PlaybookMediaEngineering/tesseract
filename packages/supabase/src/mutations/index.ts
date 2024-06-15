@@ -28,7 +28,7 @@ export async function createBankAccounts(
     teamId,
     userId,
     provider,
-  }: CreateBankAccountsPayload,
+  }: CreateBankAccountsPayload
 ) {
   // Get first account to create a bank connection
   const account = accounts?.at(0);
@@ -58,7 +58,7 @@ export async function createBankAccounts(
       },
       {
         onConflict: "institution_id, team_id",
-      },
+      }
     )
     .select()
     .single();
@@ -78,8 +78,8 @@ export async function createBankAccounts(
         }),
         {
           onConflict: "account_id",
-        },
-      ),
+        }
+      )
     )
     .select();
 }
@@ -92,7 +92,7 @@ type UpdateBankConnectionData = {
 // NOTE: Only GoCardLess needs to be updated
 export async function updateBankConnection(
   supabase: Client,
-  data: UpdateBankConnectionData,
+  data: UpdateBankConnectionData
 ) {
   const { id, teamId } = data;
 
@@ -113,7 +113,7 @@ type CreateTransactionsData = {
 
 export async function createTransactions(
   supabase: Client,
-  data: CreateTransactionsData,
+  data: CreateTransactionsData
 ) {
   const { transactions, teamId } = data;
 
@@ -121,20 +121,20 @@ export async function createTransactions(
     transactions.map((transaction) => ({
       ...transaction,
       team_id: teamId,
-    })),
+    }))
   );
 }
 
 export async function updateTransaction(
   supabase: Client,
   id: string,
-  data: any,
+  data: any
 ) {
   return supabase
-    .from("decrypted_transactions")
+    .from("transactions")
     .update(data)
     .eq("id", id)
-    .select("id, category, category_slug, team_id, name:decrypted_name, status")
+    .select("id, category, category_slug, team_id, name, status")
     .single();
 }
 
@@ -191,7 +191,7 @@ type UpdateUserTeamRoleParams = {
 
 export async function updateUserTeamRole(
   supabase: Client,
-  params: UpdateUserTeamRoleParams,
+  params: UpdateUserTeamRoleParams
 ) {
   const { role, userId, teamId } = params;
 
@@ -217,7 +217,7 @@ type DeleteTeamMemberParams = {
 
 export async function deleteTeamMember(
   supabase: Client,
-  params: DeleteTeamMemberParams,
+  params: DeleteTeamMemberParams
 ) {
   return supabase
     .from("users_on_team")
@@ -245,7 +245,7 @@ type UpdateBankAccountParams = {
 
 export async function updateBankAccount(
   supabase: Client,
-  params: UpdateBankAccountParams,
+  params: UpdateBankAccountParams
 ) {
   const { id, teamId, ...data } = params;
 
@@ -265,13 +265,13 @@ type UpdateSimilarTransactionsParams = {
 
 export async function updateSimilarTransactions(
   supabase: Client,
-  params: UpdateSimilarTransactionsParams,
+  params: UpdateSimilarTransactionsParams
 ) {
   const { id, team_id } = params;
 
   const transaction = await supabase
-    .from("decrypted_transactions")
-    .select("name:decrypted_name, category_slug")
+    .from("transactions")
+    .select("name, category_slug")
     .eq("id", id)
     .single();
 
@@ -280,9 +280,9 @@ export async function updateSimilarTransactions(
   }
 
   return supabase
-    .from("decrypted_transactions")
+    .from("transactions")
     .update({ category_slug: transaction.data.category_slug })
-    .eq("decrypted_name", transaction.data.name)
+    .eq("name", transaction.data.name)
     .eq("team_id", team_id)
     .select("id, team_id");
 }
@@ -297,7 +297,7 @@ export type Attachment = {
 
 export async function createAttachments(
   supabase: Client,
-  attachments: Attachment[],
+  attachments: Attachment[]
 ) {
   const { data: userData } = await getCurrentUserTeamQuery(supabase);
 
@@ -307,7 +307,7 @@ export async function createAttachments(
       attachments.map((attachment) => ({
         ...attachment,
         team_id: userData?.team_id,
-      })),
+      }))
     )
     .select();
 
@@ -436,7 +436,7 @@ type UpdateInboxByIdParams = {
 
 export async function updateInboxById(
   supabase: Client,
-  params: UpdateInboxByIdParams,
+  params: UpdateInboxByIdParams
 ) {
   const { id, teamId, ...data } = params;
 
@@ -494,7 +494,7 @@ type CreateProjectParams = {
 
 export async function createProject(
   supabase: Client,
-  params: CreateProjectParams,
+  params: CreateProjectParams
 ) {
   const { data: userData } = await getCurrentUserTeamQuery(supabase);
 
