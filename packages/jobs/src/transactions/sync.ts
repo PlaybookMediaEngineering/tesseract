@@ -16,7 +16,10 @@ client.defineJob({
     const teamId = ctx.source?.id as string;
 
     if (!teamId) {
-      await io.logger.warn("Team ID is undefined");
+      await io.logger.debug("Team ID is undefined as the context source id is empty", {
+        source: ctx.source,
+        context: ctx,
+      });
     }
 
     const { data: accountsData, error: accountsError } = await supabase
